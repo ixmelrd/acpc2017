@@ -1,38 +1,18 @@
 #include<iostream>
 #include<vector>
-#define loop(i,a,b) for(int i=a;i<b;i++) 
-#define rep(i,a) loop(i,0,a)
+#define rep(i,a) for(int i=0;i<a;i++) 
 using namespace std;
-const int inf = 1e9;
-typedef vector<int> vi;
+typedef long long ll;
+const ll inf=1e8;
 int main(){
-	int n,m;
-	cin>>n>>m;
-	int sum=0;
-	int now=0;
-	vi in(n);
-	rep(i,n)cin>>in[i];
-	do{
-		int mi=inf,ma=-inf;
-		rep(i,m){
-			int t=in[now];
-			mi=min(mi,t);
-			ma=max(ma,t);
-			
-			now++;
-			if(now==n)now=0;
-		}
-		sum+=ma-mi;
-	}while(now);
-	cout<<sum<<endl;
+	int n,d;
+	cin>>n>>d;
+	vector<ll>t(n+1,inf),f(n+1,1);
+	rep(i,n)cin>>t[i]>>f[i];
+	ll out=0,l=0;
+	rep(i,n)if(f[i+1]+f[i]-2<=t[i+1]-t[i])if(d<=i-l){
+		cout<<-1<<endl;
+		return 0;
+	}else while(l!=i+1)out+=t[i]+f[i]-1-t[l++];
+	cout<<out<<endl;
 }
-
-
-
-
-
-
-
-
-
-
