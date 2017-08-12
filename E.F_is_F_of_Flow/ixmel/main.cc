@@ -47,7 +47,7 @@ class MF{//max flow
 	public:
 	int n;
 	vector<vector<edge> >G;//[MAX];
-	vi level,iter;//[MAX];
+	vector<bool>used;//[MAX];
 	MF(int size){
 		n=size;
 		G=vector<vector<edge> >(n);
@@ -58,27 +58,12 @@ class MF{//max flow
 		q={from,0,int(G[from].size()-1),0};
 		G[to].push_back(q);
 	}
-	void bfs(int s){
-		level=vi(n,-1);
-		queue<int>q;
-		level[s]=0;
-		q.push(s);
-		while(!q.empty()){
-			int v=q.front();q.pop();
-			for(int i=0;i<G[v].size();i++){
-				edge &e=G[v][i];
-				if(e.cap>0&&level[e.to]<0){
-					level[e.to]=level[v]+1;
-					q.push(e.to);
-				}
-			}
-		}
-	}
 	int dfs(int v,int t, int f) {
 		if(v==t)return f;
-		for(int &i=iter[v];i<G[v].size();i++){
+		used[v]=1;
+		for(int i=0;i<G[v].size();i++){
 			edge &e=G[v][i];
-			if(level[v]>=level[e.to]||e.cap<=0) continue;
+			if(used[e.to]||e.cap<=0) continue;
 			int d =dfs(e.to,t,min(f,e.cap));
 			if(d>0){
 				e.cap-=d;
@@ -89,16 +74,15 @@ class MF{//max flow
 		return 0;
 	}
 	int mf(int s,int t) {//from s to t,ford_fulkerson
-		int flow=0;
+		int flow=0,f;
 		while(1){
-			bfs(s);
-			if(level[t]<0)return flow;
-			iter=vi(n);
-			int f;
-			while((f=dfs(s,t,inf))>0)flow+=f;
+			used=vector<bool>(n,false);
+			f=dfs(s,t,inf);
+			if(f==0)return flow;
+			flow+=f;
+			if(flow>=100010)return -1;
 		}
 	}
-	vi used;
 	int from,to;
 	bool DFS(int a){
 		if(a==to)return true;
@@ -113,16 +97,17 @@ class MF{//max flow
 	}
 	int solve(){
 		int flow=mf(0,n-1);
+		if(flow==-1)return -1;
 		rep(i,n)rep(j,G[i].size()){
 			edge e=G[i][j];
 			if(e.no==1&&e.cap==0&&G[e.to][e.rev].cap==1){
 //				cout<<i<<" "<<e.to<<endl;
-				used=vi(n);
+				used=vector<bool>(n);
 				from=e.to,to=i;
 				if(!DFS(e.to))return flow-1;
 			}
 		}
-		return flow;
+		return flow<=10000?flow:-1;
 	}
 };
 int main(){
@@ -133,6 +118,7 @@ int main(){
 		int a,b,c;
 		cin>>a>>b>>c;
 		mf.add_edge(a,b,c);
+		mf.add_edge(b,a,c);
 	}
 	cout<<mf.solve()<<endl;
 }
