@@ -6,7 +6,7 @@ using namespace std;
 
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
-void output(const int &N, const int &K, const vector<int> &A, const string &prefix, const int &num = 0) {
+void output(const int N, const int K, const vector<int> &A, const string &prefix, const int num = 0) {
   ostringstream os;
   os << prefix << '_' << num << ".in";
   ofstream ofs(os.str());
