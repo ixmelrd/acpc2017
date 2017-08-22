@@ -63,13 +63,3 @@ int main(){
 	loop(i,s,n)if(mi[i]!=inf)st.update(i,st.query(mi[i],i)+dm[i]);
 	cout<<st.query(t-1,n)<<endl;
 }
-
-
-
-
-
-
-
-
-
-
