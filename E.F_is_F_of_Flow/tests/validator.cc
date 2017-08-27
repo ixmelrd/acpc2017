@@ -27,6 +27,5 @@ int main(){
     for(int i = 0; i < V; i++){ //事故ループ検出
         assert(graph[i][i] == 0);
     }
-
     inf.readEof();
 }
