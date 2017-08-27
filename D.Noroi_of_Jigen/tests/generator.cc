@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <cassert>
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
@@ -38,7 +39,7 @@ vector<int> gen_d(int N) {
 
 
 //魔法の移動元と移動先を生成
-vector<pii> gen_v(int M) {
+vector<pii> gen_v(int N, int M) {
   vector<pii> v;
   v.reserve(M);
   set<pii> used;
@@ -48,9 +49,10 @@ vector<pii> gen_v(int M) {
     if (a == b) continue;
     if (a > b) swap(a, b);
     if (used.count(pii(a, b))) continue;
-    v.emplace_back(a, b);
-    used.emplace(a, b);
+    v.emplace_back(pii(a, b));
+    used.emplace(pii(a, b));
   }
+  shuffle(v.begin(), v.end());
   return v;
 }
 
@@ -64,7 +66,7 @@ int main(){
         int N = rnd.next(MIN_N, MAX_N);
         int M = rnd.next(MIN_M, min(N*(N-1)/2,MAX_M));
         vector<int> d = gen_d(N);
-	vector<pii> v = gen_v(M);
+	vector<pii> v = gen_v(N, M);
 	int max_b = 0;
 	for(int i = 0; i < M; ++i){
 	  max_b = max(max_b, v[i].second);
