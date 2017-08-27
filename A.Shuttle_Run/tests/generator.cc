@@ -1,4 +1,3 @@
-community/virtualbox-guest-modules-arch # 5.1.26-2 2 -> 5
 #include <iostream>
 #include <utility>
 #include "./testlib.h"
