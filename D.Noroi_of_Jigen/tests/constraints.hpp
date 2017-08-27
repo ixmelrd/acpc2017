@@ -1,5 +1,6 @@
-#define MIN_N 1
-#define MAX_N 1000
-#define MIN_M 1
-#define MIN_A 0
-#define MAX_A 100
+#define MIN_N 2
+#define MAX_N 100000
+#define MIN_M 2
+#define MAX_M 100000
+#define MIN_d 1
+#define MAX_d 1000
