@@ -40,6 +40,7 @@ vector<int> gen_d(int N) {
 //魔法の移動元と移動先を生成
 vector<pii> gen_v(int M) {
   vector<pii> v;
+  v.reserve(M);
   set<pii> used;
   while((int)v.size() != M){
     int a = rnd.next(0, N - 1);
