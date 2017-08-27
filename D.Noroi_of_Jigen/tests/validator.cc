@@ -14,7 +14,6 @@ int main() {
   }
   inf.readEoln();
   for (int i = 0; i < M; i++) {
-    if (i) inf.readSpace();
     inf.readInt(MIN_N, N);
     inf.readSpace();
     inf.readInt(MIN_N, N);
