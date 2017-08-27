@@ -25,7 +25,7 @@ int main(){
 	rep(case_num,TEST_CASE){
 		char file_name[100];
 		sprintf(file_name,"10-random-%02d.in",case_num);
-		int length=rnd.next(MIN_LENGTH,MAX_LENGTH);
+		int length=rnd.next(MIN_N,MAX_N);
 		string s;
 		rep(i,length){
 			int num=rnd.next(rangemin,rangemax);
