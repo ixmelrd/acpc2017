@@ -5,77 +5,156 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <cassert>
+#include <set>
 
 using namespace std;
 
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 
-void output(int N, int M, const vector<int> &a, const string &prefix, int suffix){
+using PR = pair<int,int>;
+using TPL = tuple<int,int,int>;
+
+void output(int V, int E, const vector<TPL> &edges, const string &prefix, int suffix){
+    assert(static_cast<int>(edges.size()) == E);
     char name[100];
     sprintf(name, "%s_%02d.in", prefix.c_str(), suffix);
     ofstream ofs(name);
-    ofs << N << ' ' << M << endl;
-    for (int i = 0; i < N; ++i) {
-        ofs << a[i] << (i + 1 == N ? '\n' : ' ');
+    ofs << V << ' ' << E << endl;
+    for (int i = 0; i < E; ++i) {
+        int a, b, c;
+        tie(a, b, c) = edges[i];
+        ofs << a << ' ' << b << ' ' << c << '\n';
     }
     ofs.close();
 }
 
-vector<int> gen(int N) {
-    vector<int> A(N);
-    for (int i = 0; i < N; ++i) {
-        A[i] = rnd.next(MIN_A, MAX_A);
+vector<PR> createTree(int V){
+    vector<PR> edges;
+    for(int i = 1; i < V; i++){
+        int par = rnd.next(0, i - 1);
+        edges.emplace_back(i, par);
     }
-    return A;
+    return edges;
 }
+
+vector<PR> createStar(int V){
+    int c = rnd.next(0, V - 1);
+    vector<PR> edges;
+    for(int i = 0; i < V; i++){
+        if(i == c) continue;
+        edges.emplace_back(c,i);
+    }
+    return edges;
+}
+
+vector<PR> addEdgesToTree(int V, int E){
+    vector<PR> edges = createTree(V);
+    for(auto &e : edges){
+        if(e.first > e.second) swap(e.first, e.second);
+    }
+    set<PR> used(edges.begin(), edges.end());
+    assert(E <= static_cast<int>(V * (V - 1) / 2));
+    while(static_cast<int>(edges.size()) != E){
+        int a = rnd.next(0, V - 1);
+        int b = rnd.next(0, V - 1);
+        if(a == b) continue;
+        if(a > b) swap(a,b);
+        if(used.count(make_pair(a,b))) continue;
+        edges.emplace_back(a,b);
+        used.emplace(a,b);
+    }
+    shuffle(edges.begin(), edges.end());
+    return edges;
+}
+
+//一直線のグラフを作る
+vector<PR> createPathGraph(int V){
+    vector<PR> edges;
+    rep(i,V - 1){
+        edges.emplace_back(i, i + 1);
+    }
+    return edges;
+}
+
+vector<TPL> random_c(const vector<PR> &edges, int max_c){
+    int E = edges.size();
+    vector<TPL> res(E);
+    rep(i,E){
+        int a, b;
+        tie(a, b) = edges[i];
+        int c = rnd.next(1, max_c);
+        if(rnd.next(1, 3) == 1) c = 1; // 30%の確率で容量1になる
+        res[i] = make_tuple(a, b, c);
+    }
+    return res;
+}
+
+vector<TPL> max_c(const vector<PR> &edges, int max_c){
+    int E = edges.size();
+    vector<TPL> res(E);
+    rep(i,E){
+        int a, b;
+        tie(a, b) = edges[i];
+        int c = max_c;
+        if(rnd.next(1, 3) == 1) c = 1; // 30%の確率で容量1になる
+        res[i] = make_tuple(a, b, c);
+    }
+    return res;
+}
+
 
 int main(){
     // 乱数のシードを設定
     // pidを足すことで、1秒以上間を置かずに起動したときに同じシードになってしまうのを防ぐ
     rnd.setSeed(time(0)+getpid());
 
-    // 乱数ケース
+    // 手計算できるぐらい小さいケース
+    for(int i = 0; i < 10; i++){
+        int V = rnd.next(MIN_V, 5);
+        int E = rnd.next(V - 1, V * (V - 1) / 2);
+        int C = 5;
+        vector<TPL> g = random_c(addEdgesToTree(V, E), C);
+        output(V, E, g, "random_small", i);
+    }
+
+    // 乱数ケース (連結)
     for(int i = 0; i < 10; ++i){
-        int N = rnd.next(MIN_N, MAX_N);
-        int M = rnd.next(MIN_M, N);
-        vector<int> A = gen(N);
-        output(N, M, A, "50_random", i);
+        int V = rnd.next(MIN_V, MAX_V);
+        int E = rnd.next(V - 1, min(MAX_E, V * (V + 1) / 2));
+        int C = rnd.next(MIN_C, MAX_C);
+        vector<TPL> g = random_c(addEdgesToTree(V,E), C);
+        output(V, E, g, "50_random", i);
     }
 
-    // 色の数Nが少ない乱数ケース
-    for(int i = 0; i < 10; ++i){
-        int N = rnd.next(MIN_N, 10);
-        int M = rnd.next(MIN_M, N);
-        vector<int> A = gen(N);
-        output(N, M, A, "51_random_Nsmall", i);
+    // 木
+    for(int i = 0; i < 4; i++){
+        int V = rnd.next(MIN_V, MAX_V);
+        int E = rnd.next(V - 1, min(MAX_E, V * (V + 1) / 2));
+        int C = rnd.next(MIN_C, MAX_C);
+        vector<TPL> g = random_c(addEdgesToTree(V, E), C);
+        output(V, E, g, "tree", i);
     }
 
-    // 最大( LCM(N,M)が大きく、数の範囲の総和も大きい )ケース
-    vector<int> primenums;
-    const auto isPrime = [](int n){
-        if(n<=1)return false;
-        for(int i=2;i*i<=n;i++){
-            if(n%i==0)return false;
-        }
-        return true;
-    };
-    for(int i=900;i<=1000;i++){
-        if(isPrime(i)){
-            primenums.push_back(i);
-        }
+    // スター
+    for(int i = 0; i < 4; i++){
+        int V = rnd.next(MIN_V, MAX_V);
+        vector<TPL> g = random_c(createStar(V), MAX_C);
+        output(V, V - 1, g, "star", i);
     }
 
-    for(int i = 0; i < 10; ++i){
-        int pos = rnd.next(1,(int)primenums.size()-1);
-        int N = primenums[ pos ];
-        int M = primenums[ rnd.next(0,pos-1) ];
-        assert(M<=N);
-        vector<int> A(N);
-        for(int j=0;j<N;j++){
-            if(j%2==0)A[j]=0;
-            else A[j]=100;
-        }
-        output(N, M, A, "52_NMprime", i);
+    //一直線のグラフ
+    {
+        int V = MAX_V;
+        vector<TPL> g = random_c(createPathGraph(V), MAX_C);
+        output(V, V - 1, g, "StraightGraph", 0);
     }
 
+    //最大コストの辺ばかり (いらない)
+    {
+        int V = MAX_V;
+        int E = MAX_E;
+        vector<TPL> g = max_c(addEdgesToTree(V,E), MAX_C);
+        output(V, E, g, "maximum_cost", 0);
+
+    }
 }
