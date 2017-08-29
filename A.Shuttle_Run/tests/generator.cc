@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <cassert>
 #define TEST_CASE 15
-#define rangemax 1e9
+#define rangemax 1000000000
 #define rangemin 1
 using namespace std;
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
