@@ -4,14 +4,14 @@
 
 int main(){
 	registerValidation();
-	int N_CNT=inf.readint(MIN_N,MAX_N);
-	int D_CNT=inf.readint(MIN_D,MAX_D);
+	int N_CNT=inf.readInt(MIN_N,MAX_N);
+	int D_CNT=inf.readInt(MIN_D,MAX_D);
 	inf.readEoln();
 	int pret=1;
 	for(int i=0; i<N_CNT;i++){
-		pret=inf.readint(pret+1,MAX_T);
+		pret=inf.readInt(pret+1,MAX_T);
 		inf.readSpace();
-		inf.readint(MIN_F,MAX_F);
+		inf.readInt(MIN_F,MAX_F);
 		inf.readEoln();
 	}
 	inf.readEoln();
