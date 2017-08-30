@@ -12,18 +12,18 @@ int main(){
     int m = inf.readInt(MIN_M, MAX_M);
     inf.readEoln();
 
-    std::vector<std::string> v;
+    std::vector<std::string> in;
     for(int i = 0; i < m + 1; i++){
         std::string s = inf.readToken("[a-z]+");
-        v.emplace_back(s);
+        in.push_back(s);
         assert(s.size() == n);
         inf.readEoln();
     }
     for(int i = 0; i < n; i++){
-        std::set<char> s;
+		std::vector<int>h(26);
         for(int j = 0; j < m; j++){
-            assert(not s.count(v[j][i]));
-            s.insert(v[j][i]);
+			assert(h[in[j][i]]==0);
+			h[in[j][i]]=1;
         }
     }
 
