@@ -6,6 +6,7 @@
 using namespace std;
 const int inf = 1e9;
 typedef vector<int> vi;
+typedef long long ll;
 #define MOD 1000000007
 // a^b mod MOD
 ll powmod(ll a,ll b){
@@ -32,5 +33,5 @@ ll nCr(ll n,ll r){
 	return out;
 }
 int main(){
-	
+	;
 }
