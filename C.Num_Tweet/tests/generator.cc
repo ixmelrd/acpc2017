@@ -63,10 +63,13 @@ void case_60_corner() { // stack overflow attack (anti dfs)
 }
 
 void case_61_corner() { // single node
-  int N = 1, K = MIN_K;
-  vector<int> A(N);
-  A[0] = 0;
-  output(N, K, A, "61_corner");
+  int N = 1;
+  rep(num, 10) {
+    int K = rnd.next(MIN_K, MAX_K);
+    vector<int> A(N);
+    A[0] = 0;
+    output(N, K, A, "61_corner", num);
+  }
 }
 
 int main() {
