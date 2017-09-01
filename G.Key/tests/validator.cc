@@ -20,7 +20,7 @@ int main(){
         inf.readEoln();
     }
     for(int i = 0; i < n; i++){
-		std::vector<int>h(26);
+		std::vector<int>h(256);
         for(int j = 0; j < m; j++){
 			assert(h[in[j][i]]==0);
 			h[in[j][i]]=1;
