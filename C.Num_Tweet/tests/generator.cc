@@ -18,7 +18,7 @@ void output(const int N, const int K, const vector<int> &A, const string &prefix
 void case_50_random() {
   rep(num, 10) {
     int N = rnd.next(MIN_N, MAX_N);
-    int K = rnd.next(MIN_K, MAX_N);
+    int K = rnd.next(MIN_K, MAX_K);
     vector<int> A(N);
     rep(i, N) A[i] = rnd.next(MIN_A, i);
     output(N, K, A, "50_random", num);
@@ -28,7 +28,7 @@ void case_50_random() {
 void case_51_N_small() {
   rep(num, 10) {
     int N = rnd.next(MIN_N, 20);
-    int K = rnd.next(MIN_K, MAX_N);
+    int K = rnd.next(MIN_K, MAX_K);
     vector<int> A(N);
     rep(i, N) A[i] = rnd.next(MIN_A, i);
     output(N, K, A, "51_Nsmall", num);
