@@ -25,6 +25,16 @@ void case_50_random() {
   }
 }
 
+void case_51_N_small() {
+  rep(num, 10) {
+    int N = rnd.next(MIN_N, 20);
+    int K = rnd.next(MIN_K, MAX_N);
+    vector<int> A(N);
+    rep(i, N) A[i] = rnd.next(MIN_A, i);
+    output(N, K, A, "51_Nsmall", num);
+  }
+}
+
 void case_60_corner() { // larger N
   rep(num, 10) {
     int N = rnd.next(MAX_N / 2, MAX_N);
@@ -52,6 +62,7 @@ void case_62_corner() { // single node
 int main() {
   rnd.setSeed(time(0) + getpid());
   case_50_random();
+  case_51_N_small();
   case_60_corner();
   case_61_corner();
   case_62_corner();
