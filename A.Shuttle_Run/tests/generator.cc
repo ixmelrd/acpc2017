@@ -22,9 +22,50 @@ void output(string s,int length,const string &name){
 }
 int main(){
 	rnd.setSeed(time(0)+getpid());
+	/*小さいテストケースを作成*/
 	rep(case_num,TEST_CASE){
 		char file_name[100];
-		sprintf(file_name,"10-random-%02d.in",case_num);
+		sprintf(file_name,"50-small-%02d.in",case_num);
+		int l=rnd.next(MIN_N,20);
+		string s;
+		rep(i,l){
+			int num=rnd.next(1,100);
+			if(num%2)s.push_back('o');
+			else s.push_back('x');
+		}
+		output(s,length,file_name);
+	}
+    rep(case_num,TEST_CASE){
+        char file_name[100];
+        sprintf(file_name,"50-big-%02d.in",case_num);
+        int length=rnd.next(1000,MAX_N);
+        string s;
+        rep(i,length){
+            int num=rnd.next(rangemin,rangemax);
+            if(num%10)s.push_back('o');
+            else s.push_back('x');
+        }
+        output(s,length,file_name);
+    }
+
+	/*xの出現確率を50％*/
+    rep(case_num,TEST_CASE){
+        char file_name[100];
+        sprintf(file_name,"60-even-%02d.in",case_num);
+        int length=rnd.next(MIN_N,MAX_N);
+        string s;
+        rep(i,length){
+            int num=rnd.next(rangemin,rangemax);
+            if(num%2)s.push_back('o');
+            else s.push_back('x');
+        }
+        output(s,length,file_name);
+    }
+
+	/*ランダムテストケース*/
+	rep(case_num,TEST_CASE){
+		char file_name[100];
+		sprintf(file_name,"60-random-%02d.in",case_num);
 		int length=rnd.next(MIN_N,MAX_N);
 		string s;
 		rep(i,length){
