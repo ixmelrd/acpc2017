@@ -5,6 +5,7 @@
 int main(){
 	registerValidation();
 	int N_CNT=inf.readInt(MIN_N,MAX_N);
+	inf.readSpace();
 	int D_CNT=inf.readInt(MIN_D,MAX_D);
 	inf.readEoln();
 	int pret=1;
