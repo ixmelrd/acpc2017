@@ -25,34 +25,34 @@ void case_50_random() {
   }
 }
 
-void case_60_random() { // larger N
+void case_60_corner() { // larger N
   rep(num, 10) {
     int N = rnd.next(MAX_N / 2, MAX_N);
     int K = rnd.next(MIN_K, MAX_K);
     vector<int> A(N);
     rep(i, N) A[i] = rnd.next(MIN_A, i);
-    output(N, K, A, "60_random", num);
+    output(N, K, A, "60_corner", num);
   }
 }
 
-void case_70_corner() { // stack overflow attack (anti dfs)
+void case_61_corner() { // stack overflow attack (anti dfs)
   int N = MAX_N, K = MAX_K;
   vector<int> A(N);
   rep(i, N) A[i] = i;
-  output(N, K, A, "70_corner");
+  output(N, K, A, "61_corner");
 }
 
-void case_80_corner() { // single node
+void case_62_corner() { // single node
   int N = 1, K = MIN_K;
   vector<int> A(N);
   A[0] = 0;
-  output(N, K, A, "80_corner");
+  output(N, K, A, "62_corner");
 }
 
 int main() {
   rnd.setSeed(time(0) + getpid());
   case_50_random();
-  case_60_random();
-  case_70_corner();
-  case_80_corner();
+  case_60_corner();
+  case_61_corner();
+  case_62_corner();
 }
