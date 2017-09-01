@@ -1,5 +1,6 @@
 #include "./constraints.hpp"
 #include "./testlib.h"
+#include <iomanip>
 #include <sys/types.h>
 #include <unistd.h>
 using namespace std;
@@ -8,7 +9,7 @@ using namespace std;
 
 void output(const int N, const int K, const vector<int> &A, const string &prefix, const int num = 0) {
   ostringstream os;
-  os << prefix << '_' << num << ".in";
+  os << prefix << '_' << setw(2) << setfill('0') << num << ".in";
   ofstream ofs(os.str());
   ofs << N << ' ' << K << '\n';
   for (auto &x : A) ofs << x << '\n';
