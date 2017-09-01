@@ -3,7 +3,6 @@
 #include <cassert>
 
 int main() {
-  bool failed = false;
   registerValidation();
   int N = inf.readInt(MIN_N, MAX_N);
   inf.readSpace();
@@ -12,7 +11,7 @@ int main() {
   int s = inf.readInt(1, N);
   inf.readSpace();
   int d = inf.readInt(1, N);
-  failed |= s == d;
+  assert(s != d);
   inf.readEoln();
   for (int i = 0; i < N; i++) {
     if (i) inf.readSpace();
@@ -24,8 +23,7 @@ int main() {
     inf.readSpace();
     int b = inf.readInt(1, N);
     inf.readEoln();
-    failed |= !(a < b);
+    assert(a < b);
   }
   inf.readEof();
-  if (failed) return 1;
 }
