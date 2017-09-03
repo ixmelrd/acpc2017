@@ -26,9 +26,9 @@ int main(){
 	rep(case_num,TEST_CASE){
 		char file_name[100];
 		sprintf(file_name,"50-small-%02d.in",case_num);
-		int l=rnd.next(MIN_N,20);
+		int length=rnd.next(MIN_N,20);
 		string s;
-		rep(i,l){
+		rep(i,length){
 			int num=rnd.next(1,100);
 			if(num%2)s.push_back('o');
 			else s.push_back('x');
