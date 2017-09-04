@@ -3,16 +3,16 @@
 #include <cassert>
 
 int main() {
-  // registerValidation();
-  // int n = inf.readInt(MIN_N, MAX_N);
-  // inf.readSpace();
-  // int m = inf.readInt(MIN_M, n);
-  // inf.readEoln();
+  registerValidation();
+  int n = inf.readInt(MIN_N, MAX_N);
 
-  // for(int i = 0; i < n; i++){
-  //     if(i) inf.readSpace();
-  //     inf.readInt(MIN_A, MAX_A);
-  // }
-  // inf.readEoln();
-  // inf.readEof();
+  inf.readEoln();
+
+  char ptrn[100];
+  sprintf(ptrn,"[ox]{%d}",n);
+  
+  inf.token(ptrn);
+  
+  inf.readEoln();
+  inf.readEof();
 }
