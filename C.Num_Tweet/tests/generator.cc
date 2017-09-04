@@ -46,6 +46,16 @@ void case_52_Nlarge() {
   }
 }
 
+void case_53_Nlargest() {
+  rep(num, 10) {
+    int N = MAX_N;
+    int K = rnd.next(MIN_K, MAX_K);
+    vector<int> A(N);
+    rep(i, N) A[i] = rnd.next(MIN_A, i);
+    output(N, K, A, "53_Nlargest", num);
+  }
+}
+
 void case_59_random() {
   rep(num, 10) {
     int N = rnd.next(MIN_N, MAX_N);
@@ -81,6 +91,7 @@ int main() {
   case_50_Nsmall_Ksmall();
   case_51_Nsmall();
   case_52_Nlarge();
+  case_53_Nlargest();
   case_59_random();
   case_60_corner();
   case_61_corner();
