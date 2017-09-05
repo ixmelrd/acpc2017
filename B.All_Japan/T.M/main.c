@@ -2,6 +2,7 @@
 #include<stdlib.h>
 int main(){
   long long n,s=0,i,j,l,a[100010],t[100010];
+  a[t[0]=0]=1;
   scanf("%lld %lld",&n,&l);
   for(i=0;i<n;i++)scanf("%lld %lld",&t[i+1],&a[i+1]);
   for(i=j=0;j++<n;i++){
