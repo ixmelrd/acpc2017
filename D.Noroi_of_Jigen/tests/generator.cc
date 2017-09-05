@@ -44,8 +44,8 @@ vector<pii> gen_v(int N, int M) {
   v.reserve(M);
   set<pii> used;
   while((int)v.size() != M){
-    int a = rnd.next(0, N - 1);
-    int b = rnd.next(0, N - 1);
+    int a = rnd.next(1, N);
+    int b = rnd.next(1, N);
     if (a == b) continue;
     if (a > b) swap(a, b);
     if (used.count(pii(a, b))) continue;
