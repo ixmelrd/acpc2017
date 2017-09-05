@@ -20,18 +20,15 @@ int bfs(int n, int start, int k){
     while(not q.empty()){
         pair<int, int> cur = q.front(); q.pop();
         res++;
-        //cout << "to " << cur.first << ' ' << cur.second << endl;
         for(auto to : graph[cur.first]){
+            //cout << "to " << to << endl;
             if(not used[to] && cur.second - 1 >= 0){
                 used[to] = true;
                 q.push(make_pair(to, cur.second - 1));
             }
         }
     }
-    for(auto i : loot){
-        //cout << "loot " << i << ' ' << used[i] << endl;
-        if(not used[i]) res++;
-    }
+    for(auto i : loot) if(not used[i]) res++;
     if(used[0]) res--;
     return res - 1;
 }
@@ -46,20 +43,18 @@ int main(){
         cin >> a;
         m[a] = true;
         if(a == 0) loot.emplace_back(i + 1);
-        //graph[a].emplace_back(i + 1);
         graph[i + 1].emplace_back(a);
     }
 
     for(int i = 1; i <= n; i++){
         if(not m.count(i)){
+            //cout << "leef " << i << endl;
             leef.emplace_back(i);
         }
     }
 
 
     for(auto i : leef){
-        //cout << "leef "<< i << endl;
-        graph[i].emplace_back(n + 1);
         graph[n + 1].emplace_back(i);
     }
 
