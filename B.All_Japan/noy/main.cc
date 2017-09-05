@@ -20,21 +20,23 @@ int main(){
     v[n + 1] = Data{INF, 1};
 
     long long w = 0, ans = 0;
-    for(int i = 1; i <= n + 1; i++){
+    for(int i = 1; i < n + 2; i++){
+        //cout << "i " << i << "w " << w << endl;
         long long time = v[i].t - v[i - 1].t;
         //cout << "TIme  " <<  time << endl; cout << " i " << i <<  ' ' << w << endl;
         if(v[i - 1].f + v[i].f - 2 <= time){
             //cout << "V " << v[i - 1].f << ' ' << w << endl;
             ans += w * (v[i - 1].f - 1);
+            //cout << w * (v[i - 1].f - 1) << endl;
             w = 1;
         }else if(abs(v[i].f - v[i - 1].f) <= time && w < d){
-            ans += w * abs(v[i].f - v[i - 1].f);
+            ans += w * abs(v[i].t - v[i - 1].t);
+            //cout << w * abs(v[i].t - v[i - 1].t) << endl;
             w++;
         }else{
             cout << -1 << endl;
             return 0;
         }
-        //cout << ans << endl;
     }
     cout << ans << endl;
 }
