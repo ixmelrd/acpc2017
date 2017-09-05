@@ -47,16 +47,17 @@ class MF{//max flow
 	public:
 	int n;
 	vector<vector<edge> >G;//[MAX];
+	vector<vector<edge> >hozon;
 	vi level,iter;//[MAX];
 	MF(int size){
 		n=size;
-		G=vector<vector<edge> >(n);
+		hozon=vector<vector<edge> >(n);
 	}
 	void add_edge(int from, int to, int cap){
-		edge q={to,cap,int(G[to].size()),1};
-		G[from].push_back(q);
-		q={from,0,int(G[from].size()-1),0};
-		G[to].push_back(q);
+		edge q={to,cap,int(hozon[to].size()),1};
+		hozon[from].push_back(q);
+		q={from,0,int(hozon[from].size()-1),0};
+		hozon[to].push_back(q);
 	}
 	void bfs(int s){
 		level=vi(n,-1);
@@ -89,6 +90,7 @@ class MF{//max flow
 		return 0;
 	}
 	int mf(int s,int t) {//from s to t,ford_fulkerson
+		G=hozon;
 		int flow=0;
 		while(1){
 			bfs(s);
@@ -96,37 +98,19 @@ class MF{//max flow
 			iter=vi(n);
 			int f;
 			while((f=dfs(s,t,inf))>0)flow+=f;
-			if(flow>=10010)return -1;
+			if(flow>=10010)return inf;
 		}
-	}
-	int from,to;
-	vector<bool>used;
-	bool DFS(int a){
-		if(a==to)return true;
-		used[a]=true;
-		rep(i,G[a].size()){
-			edge e=G[a][i];
-			if(a==from&&e.to==to)continue;
-			if(used[e.to])continue;
-			if(e.cap&&DFS(e.to))return true;
-		}
-		return false;
-	}
+	}//4 4 0 1 3 0 2 4 1 3 1 2 3 5
 	int solve(){
-		int flow=mf(0,n-1);
-		if(flow==-1)return -1;
-		rep(i,n)rep(j,G[i].size()){
-			edge e=G[i][j];
-			if(e.no==1&&e.cap==0&&G[e.to][e.rev].cap==1){
-				used=vector<bool>(n);
-				from=i,to=e.to;
-				if(!DFS(from)){
-					flow--;
-					goto end;
-				}
+		int flow=inf;
+		rep(i,n)rep(j,hozon[i].size()){
+			edge e=hozon[i][j];
+			if(e.no==1&&e.cap==1){
+				hozon[i][j].cap=0;
+				flow=min(flow,mf(0,n-1));
+				hozon[i][j].cap=1;
 			}
 		}
-		end:;
 		return flow<=10000?flow:-1;
 	}
 };
