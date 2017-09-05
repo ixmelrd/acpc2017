@@ -64,7 +64,7 @@ int main(){
     // 乱数ケース
     for(int i = 0; i < 10; ++i){
         int N = rnd.next(MIN_N, MAX_N);
-        int M = rnd.next(MIN_M, min((long long)N*(N-1)/2,MAX_M));
+        int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
         vector<int> d = gen_d(N);
 	vector<pii> v = gen_v(N, M);
 	int max_b = 0;
