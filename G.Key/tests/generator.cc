@@ -58,18 +58,18 @@ int main(){
 
     //小さいケース
     for(int i = 0; i < 10; i++){
-        int N = rnd.next(MIN_N, 3);
-        int M = rnd.next(MIN_M, 3);
+        int N = rnd.next(MIN_N, 4);
+        int M = rnd.next(MIN_M, 4);
         vector<string> v = createString(N, M);
-        output(N, M, v, "random_small", i);
+        output(N, M, v, "50_random_small", i);
     }
 
     //大きいケース
     for(int i = 0; i < 10; i++){
-        int N = rnd.next(13, MAX_N);
-        int M = rnd.next(13, MAX_M);
+        int N = rnd.next(12, MAX_N);
+        int M = rnd.next(12, MAX_M);
         vector<string> v = createString(N, M);
-        output(N, M, v, "random_large", i);
+        output(N, M, v, "50_random_large", i);
     }
 
     //ランダム
@@ -77,6 +77,22 @@ int main(){
         int N = rnd.next(MIN_N, MAX_N);
         int M = rnd.next(MIN_M, MAX_M);
         vector<string> v = createString(N, M);
-        output(N, M, v, "random", i);
+        output(N, M, v, "50_random", i);
+    }
+
+    //最大ケース
+    for(int i = 0; i < 3; i++){
+        int N = MAX_N;
+        int M = MAX_M;
+        vector<string> v = createString(N, M);
+        output(N, M, v, "60_maximum", i);
+    }
+
+    //最小ケース
+    for(int i = 0; i < 3; i++){
+        int N = MIN_N;
+        int M = MIN_M;
+        vector<string> v = createString(N, M);
+        output(N, M, v, "60_minimum", i);
     }
 }
