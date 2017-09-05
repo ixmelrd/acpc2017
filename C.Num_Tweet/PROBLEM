@@ -7,6 +7,6 @@
 ##   time_limit: The time limit of this problem in seconds.
 problem(title = "Num Tweet",
         id = "C",
-        reference_solution = 'ixmel',
+        reference_solution = 'T.M',
         time_limit = 1.0,
         )
