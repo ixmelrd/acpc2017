@@ -9,6 +9,18 @@ using namespace std;
 vector<int> graph[100005];
 vector<int> leef, loot;
 
+void dfs(int n, int cur, vector<bool> &used){
+    bool f = false;
+    for(auto to : graph[cur]){
+        if(used[to]) continue;
+        used[to] = true;
+        dfs(n, to, used);
+        f = true;
+    }
+    if(not f) leef.emplace_back(cur);
+}
+
+
 int bfs(int n, int start, int k){
     bool used[100005] = {0};
     queue<pair<int, int>> q;
@@ -51,12 +63,8 @@ int main(){
         graph[i + 1].emplace_back(a);
     }
 
-    for(int i = 1; i <= n; i++){
-        if(not m.count(i)){
-            leef.emplace_back(i);
-        }
-    }
-
+    vector<bool> used(n + 1, 0);
+    dfs(n, 0, used);
 
     for(auto i : leef){
         //cout << i << endl;

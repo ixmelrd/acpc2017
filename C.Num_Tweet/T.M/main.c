@@ -9,7 +9,7 @@ int main(){
     a[d[i+1]]=1;
   }
   for(i=n;i;i--){
-    if(a[i]==0)c[i]=k+1;
+    if(a[i]==0)c[i]=k;
     c[d[i]]=MAX(c[d[i]],c[i]-1);
   }
   for(i=k=0;i<n;i++){
