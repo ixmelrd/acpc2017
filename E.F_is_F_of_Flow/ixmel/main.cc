@@ -80,7 +80,7 @@ class MF{//max flow
 			f=dfs(s,t,inf);
 			if(f==0)return flow;
 			flow+=f;
-			if(flow>=100010)return -1;
+			if(flow>=10010)return -1;
 		}
 	}
 	int from,to;
