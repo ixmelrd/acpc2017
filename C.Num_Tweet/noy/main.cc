@@ -19,9 +19,8 @@ int bfs(int n, int start, int k){
     int res = 0;
     while(not q.empty()){
         pair<int, int> cur = q.front(); q.pop();
-        //cout << "ur " << cur.first << endl;
         res++;
-        //cout << "to " << cur.first << endl;
+        //cout << "to " << cur.first << ' ' << cur.second << endl;
         for(auto to : graph[cur.first]){
             if(not used[to] && cur.second - 1 >= 0){
                 used[to] = true;
@@ -47,7 +46,7 @@ int main(){
         cin >> a;
         m[a] = true;
         if(a == 0) loot.emplace_back(i + 1);
-        graph[a].emplace_back(i + 1);
+        //graph[a].emplace_back(i + 1);
         graph[i + 1].emplace_back(a);
     }
 
@@ -59,7 +58,7 @@ int main(){
 
 
     for(auto i : leef){
-        //cout << i << endl;
+        //cout << "leef "<< i << endl;
         graph[i].emplace_back(n + 1);
         graph[n + 1].emplace_back(i);
     }

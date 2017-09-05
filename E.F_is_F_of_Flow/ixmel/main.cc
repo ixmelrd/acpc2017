@@ -85,13 +85,15 @@ class MF{//max flow
 	}
 	int from,to;
 	bool DFS(int a){
+		if(h){
+		}
 		if(a==to)return true;
 		used[a]=true;
 		rep(i,G[a].size()){
 			edge e=G[a][i];
 			if(a==from&&e.to==to)continue;
 			if(used[e.to])continue;
-			if(e.cap&&G[e.to][e.rev].cap&&DFS(e.to))return true;
+			if(e.cap&&DFS(e.to))return true;
 		}
 		return false;
 	}
@@ -101,10 +103,9 @@ class MF{//max flow
 		rep(i,n)rep(j,G[i].size()){
 			edge e=G[i][j];
 			if(e.no==1&&e.cap==0&&G[e.to][e.rev].cap==1){
-//				cout<<i<<" "<<e.to<<endl;
 				used=vector<bool>(n);
-				from=e.to,to=i;
-				if(!DFS(e.to)){
+				from=i,to=e.to;
+				if(!DFS(from)){
 					flow--;
 					goto end;
 				}
