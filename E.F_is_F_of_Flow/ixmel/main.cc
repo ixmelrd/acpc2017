@@ -83,7 +83,7 @@ class MF{//max flow
 			if(flow>=10010)return -1;
 		}
 	}
-	int from,to,h=0;
+	int from,to;
 	bool DFS(int a){
 		if(h){
 		}
@@ -105,7 +105,6 @@ class MF{//max flow
 			if(e.no==1&&e.cap==0&&G[e.to][e.rev].cap==1){
 				used=vector<bool>(n);
 				from=i,to=e.to;
-				if(i==3607)h=true;
 				if(!DFS(from)){
 					flow--;
 					goto end;
