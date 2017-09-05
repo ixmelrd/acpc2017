@@ -8,7 +8,7 @@ int main(){
 	inf.readSpace();
 	int D_CNT=inf.readInt(MIN_D,MAX_D);
 	inf.readEoln();
-	int pret=1;
+	int pret=0;
 	for(int i=0; i<N_CNT;i++){
 		pret=inf.readInt(pret+1,MAX_T);
 		inf.readSpace();
