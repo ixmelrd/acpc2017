@@ -1,4 +1,4 @@
-nclude<bits/stdc++.h>
+#include<bits/stdc++.h>
 #define int long long
 #define rep(i,n) for(int i=0; i<n;i++)
 using namespace std;
@@ -33,3 +33,4 @@ signed main(){
     ans+=(v[n-1].second-1)*cnt;
     cout<<ans<<endl;
 }
+
