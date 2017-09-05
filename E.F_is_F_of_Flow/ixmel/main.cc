@@ -104,9 +104,13 @@ class MF{//max flow
 //				cout<<i<<" "<<e.to<<endl;
 				used=vector<bool>(n);
 				from=e.to,to=i;
-				if(!DFS(e.to))return flow-1;
+				if(!DFS(e.to)){
+					flow--;
+					goto end;
+				}
 			}
 		}
+		end:;
 		return flow<=10000?flow:-1;
 	}
 };

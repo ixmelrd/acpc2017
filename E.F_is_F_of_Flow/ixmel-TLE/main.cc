@@ -53,9 +53,9 @@ class MF{//max flow
 		G=vector<vector<edge> >(n);
 	}
 	void add_edge(int from, int to, int cap){
-		edge q={to,cap,int(G[to].size())};
+		edge q={to,cap,int(G[to].size()),1};
 		G[from].push_back(q);
-		q={from,0,int(G[from].size()-1)};
+		q={from,0,int(G[from].size()-1),0};
 		G[to].push_back(q);
 	}
 	void bfs(int s){
@@ -121,9 +121,13 @@ class MF{//max flow
 //				cout<<i<<" "<<e.to<<endl;
 				used=vector<bool>(n);
 				from=e.to,to=i;
-				if(!DFS(e.to))return flow-1;
+				if(!DFS(e.to)){
+					flow--;
+					goto end;
+				}
 			}
 		}
+		end:;
 		return flow<=10000?flow:-1;
 	}
 };
