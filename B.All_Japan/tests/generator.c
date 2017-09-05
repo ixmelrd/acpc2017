@@ -46,7 +46,7 @@ void makeR(int n){
 void makeY(int n){
   int i,a=MAX_T/n*2,b=MAX_F/n,d;
   t[0]=rnd.next(MIN_T,MIN(MAX_T,a));
-  F[0]=rnd.next(t[0],MIN(t[0]+b,MAX_F));
+  F[0]=rnd.next(MIN_F,t[0]+1);
   for(i=1;i<n;i++){
     t[i]=rnd.next(t[i-1]+1,MIN(t[i-1]+a,MAX_T-n+i+1));
     d=t[i]-t[i-1];
@@ -108,11 +108,12 @@ int main(){
   
   for(i=0;i<10;i++){
     n=rnd.next(MIN_N,MAX_N);
-    d=rnd.next(MIN_D,MAX_D);
+    d=MAX_D;
     sprintf(s,"56_Not_-1_%02d.in",i);
     makeY(n);
     out(n,d,s);
-    }//*/
+  }//*/
+
   return 0;
 }
 
