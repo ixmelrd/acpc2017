@@ -1,13 +1,23 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<map>
 #define range(i,a,b) for(int i=a;i<b;i++) 
 #define rep(i,a) loop(i,0,a)
 using namespace std;
 
 vector<int> graph[100005];
-vector<int> leef, loot;
+vector<int> leef;
+
+void dfs(int n, int cur, vector<bool> &used){
+    bool f = false;
+    for(auto to : graph[cur]){
+        if(used[to]) continue;
+        used[to] = true;
+        dfs(n, to, used);
+        f = true;
+    }
+    if(not f) leef.emplace_back(cur);
+}
 
 int bfs(int n, int start, int k){
     bool used[100005] = {0};
@@ -20,43 +30,29 @@ int bfs(int n, int start, int k){
     while(not q.empty()){
         pair<int, int> cur = q.front(); q.pop();
         //cout << "ur " << cur.first << endl;
-        res++;
-        //cout << "to " << cur.first << endl;
+        if(cur.second == 0) continue;
         for(auto to : graph[cur.first]){
-            if(not used[to] && cur.second - 1 >= 0){
+            if(not used[to]){
+                res++;
                 used[to] = true;
                 q.push(make_pair(to, cur.second - 1));
             }
         }
     }
-    for(auto i : loot){
-        //cout << "loot " << i << ' ' << used[i] << endl;
-        if(not used[i]) res++;
-    }
-    if(used[0]) res--;
-    return res - 1;
+    return res;
 }
 
 int main(){
     int n, k;
     cin >> n >> k;
-
-    map<int,bool> m;
     for(int i = 0; i < n; i++){
         int a;
         cin >> a;
-        m[a] = true;
-        if(a == 0) loot.emplace_back(i + 1);
         graph[a].emplace_back(i + 1);
         graph[i + 1].emplace_back(a);
     }
-
-    for(int i = 1; i <= n; i++){
-        if(not m.count(i)){
-            leef.emplace_back(i);
-        }
-    }
-
+    vector<bool> used(n + 1, 0);
+    dfs(n, 0, used);
 
     for(auto i : leef){
         //cout << i << endl;
