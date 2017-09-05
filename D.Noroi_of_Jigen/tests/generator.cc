@@ -76,4 +76,20 @@ int main(){
         output(N, M, s, t, d, v, "50_random", i);
     }
 
+    //　最大ケース
+    for(int i = 0; i < 1; ++i){
+      int N = MAX_N;
+      int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
+      vector<int> d = gen_d(N);
+      vector<pii> v = gen_v(N, M);
+      int max_b = 0;
+      for(int i = 0; i < M; ++i){
+	max_b = max(max_b, v[i].second);
+      }
+      int s = rnd.next(0, N);
+      int t = rnd.next(0, max(s,max_b));
+      output(N, M, s, t, d, v, "MAX_random", i);
+    }
+
+
 }
