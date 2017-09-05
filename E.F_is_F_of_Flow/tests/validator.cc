@@ -2,8 +2,34 @@
 #include "./constraints.hpp"
 #include <cassert>
 #include <algorithm>
+#include <queue>
+#include <iostream>
 
 bool graph[5000][5000];
+
+bool isLinking(int V){
+    bool used[5000] = {0};
+    std::queue<int> q;
+
+    used[0] = 1;
+    q.push(0);
+
+    int u;
+    while(!q.empty()){
+        u = q.front(); q.pop();
+        for(int v = 0; v < V; v++){
+            if(graph[u][v] && not used[v]){
+                used[v] = true;
+                q.push(v);
+            }
+        }
+    }
+
+    for(int i = 0; i < V; i++){
+        if(not used[i]) return false;
+    }
+    return true;
+}
 
 int main(){
     registerValidation();
@@ -24,8 +50,9 @@ int main(){
         assert(graph[t][e] == 0);
         graph[e][t] = graph[t][e] = 1;
     }
-    for(int i = 0; i < V; i++){ //事故ループ検出
+    for(int i = 0; i < V; i++){ //自己ループ検出
         assert(graph[i][i] == 0);
     }
+    assert(isLinking(V));
     inf.readEof();
 }
