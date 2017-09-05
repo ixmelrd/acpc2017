@@ -11,7 +11,7 @@ int main() {
   char ptrn[100];
   sprintf(ptrn,"[ox]{%d}",n);
   
-  inf.token(ptrn);
+  inf.readToken(ptrn);
   
   inf.readEoln();
   inf.readEof();
