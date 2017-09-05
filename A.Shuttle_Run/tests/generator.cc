@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <cassert>
-#define TEST_CASE 15
+#define TEST_CASE 10
 #define rangemax 1000000000
 #define rangemin 1
 using namespace std;
@@ -35,6 +35,7 @@ int main(){
 		}
 		output(s,length,file_name);
 	}
+    /*最大テストケースを作成*/
     rep(case_num,TEST_CASE){
         char file_name[100];
         sprintf(file_name,"50-big-%02d.in",case_num);
@@ -47,7 +48,19 @@ int main(){
         }
         output(s,length,file_name);
     }
-
+    /*最大テストケースを作成*/
+    rep(case_num,TEST_CASE){
+        char file_name[100];
+        sprintf(file_name,"50-MAX-%02d.in",case_num);
+        int length=MAX_N;
+        string s;
+        rep(i,length){
+            int num=rnd.next(rangemin,rangemax);
+            if(num%10)s.push_back('o');
+            else s.push_back('x');
+        }
+        output(s,length,file_name);
+    }
 	/*xの出現確率を50％*/
     rep(case_num,TEST_CASE){
         char file_name[100];
@@ -61,7 +74,6 @@ int main(){
         }
         output(s,length,file_name);
     }
-
 	/*ランダムテストケース*/
 	rep(case_num,TEST_CASE){
 		char file_name[100];
