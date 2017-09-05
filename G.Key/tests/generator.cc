@@ -12,13 +12,13 @@ using namespace std;
 #define rep(i,n) for(int i=0;i<(int)(n);i++)
 
 void output(int N, int M, const vector<int> &a, const string &prefix, int suffix){
-    assert(M + 1 == static_cast<int>(a.size()));
+    assert(N == static_cast<int>(a.size()));
     char name[100];
     sprintf(name, "%s_%02d.in", prefix.c_str(), suffix);
     ofstream ofs(name);
     ofs << N << ' ' << M << endl;
-    for(int i = 0; i < M + 1; i++){
-        ofs << a[i] << endl;
+    for(int i = 0; i < N; i++){
+        ofs << a[i] << (i == N - 1 ? '\n' : ' ');
     }
     ofs.close();
 }
@@ -26,7 +26,7 @@ void output(int N, int M, const vector<int> &a, const string &prefix, int suffix
 vector<int> create(int N, int M){
     vector<int> res(N);
     rep(i,N){
-        res[i] = rnd.next(0, M);
+        res[i] = rnd.next(0, M - 1);
     }
     return res;
 }
