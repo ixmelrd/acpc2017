@@ -100,6 +100,7 @@ class MF{//max flow
 		}
 	}
 	int from,to;
+	vector<bool>used;
 	bool DFS(int a){
 		if(a==to)return true;
 		used[a]=true;
