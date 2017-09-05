@@ -85,8 +85,6 @@ class MF{//max flow
 	}
 	int from,to;
 	bool DFS(int a){
-		if(h){
-		}
 		if(a==to)return true;
 		used[a]=true;
 		rep(i,G[a].size()){
