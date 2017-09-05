@@ -8,8 +8,8 @@ int main(){
 	string s;
 	cin>>s;
 	rep(i,s.size()-1)if(s[i]=='x'&&s[i+1]=='x'){
-		cout<<i<<endl;
+		cout<<i+1<<endl;
 		return 0;
 	}
-	cout<<-1<<endl;
+	cout<<n<<endl;
 }
