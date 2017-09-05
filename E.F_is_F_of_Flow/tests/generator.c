@@ -154,7 +154,7 @@ int main(){
     e=rnd.next(v-1,MIN(MAX_E,v*(v-1)/2));
     sprintf(s,"58_small_cost_%02d.in",i);
     makeG(v,e);
-    for(j=0;j<e;j++)c[j]=c[j]%100+1;
+    for(j=0;j<e;j++)c[j]=(c[j]-1)%100+1;
     out(v,e,s);
   }
   //*/
