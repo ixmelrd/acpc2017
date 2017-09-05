@@ -15,7 +15,6 @@ int main(){
 		inf.readInt(MIN_F,MAX_F);
 		inf.readEoln();
 	}
-	inf.readEoln();
 	inf.readEof();
 
 	
