@@ -19,7 +19,7 @@ int main(){
     }
     v[n + 1] = Data{INF, 1};
 
-    long long cur = 1, w = 0, t = 0, ans = 0;
+    long long w = 0, ans = 0;
     for(int i = 1; i <= n + 1; i++){
         long long time = v[i].t - v[i - 1].t;
         //cout << "TIme  " <<  time << endl; cout << " i " << i <<  ' ' << w << endl;
@@ -35,8 +35,6 @@ int main(){
             return 0;
         }
         //cout << ans << endl;
-        t = v[i].t;
-        cur = v[i].f;
     }
     cout << ans << endl;
 }
