@@ -29,7 +29,7 @@ int main(){
     }
   }
   ans[t[n-1]+f[n-1]-1]-=el;
-  for(int i=0;i<10;i++)ans[i+1]+=ans[i];
+  for(int i=0;i<2000004;i++)ans[i+1]+=ans[i];
   long long sum=0;
   for(int i=0;i<2000004;i++)sum+=ans[i];
   cout<<sum<<endl;
