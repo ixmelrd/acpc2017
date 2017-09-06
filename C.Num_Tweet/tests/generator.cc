@@ -5,7 +5,8 @@
 #include <unistd.h>
 using namespace std;
 
-#define rep(i, n) for (int i = 0; i < (n); i++)
+#define loop(i, a, n) for (int i = a; i < (n); i++)
+#define rep(i, n) loop(i, 0, n)
 
 void output(const int N, const int K, const vector<int> &A, const string &prefix, const int num = 0) {
   ostringstream os;
@@ -86,6 +87,17 @@ void case_61_corner() { // single node
   }
 }
 
+void case_62_corner() { // many large walks
+  rep(num, 10) {
+    int N = rnd.next(MAX_N - 100, MAX_N);
+    int K = rnd.next(MAX_K - 100, MAX_K);
+    vector<int> A(N);
+    rep(i, N / 2) A[i] = i;
+    loop(i, N / 2, N) A[i] = N / 2 - 1;
+    output(N, K, A, "62_corner", num);
+  }
+}
+
 int main() {
   rnd.setSeed(time(0) + getpid());
   case_50_Nsmall_Ksmall();
@@ -95,4 +107,5 @@ int main() {
   case_59_random();
   case_60_corner();
   case_61_corner();
+  case_62_corner();
 }
