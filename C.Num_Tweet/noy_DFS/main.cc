@@ -12,7 +12,7 @@ vector<int> leef, loot;
 void dfs(int cur, int k, bool used[100005]){
     used[cur] = true;
     for(auto to : graph[cur]){
-        if(not used[to] && k - 1 >= 0){
+        if(k - 1 >= 0){
             dfs(to, k - 1, used);
         }
     }
