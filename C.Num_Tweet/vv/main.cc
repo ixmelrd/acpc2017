@@ -16,8 +16,6 @@ struct Edge {
 };
 
 using Edges = std::vector<Edge>;
-using Array = std::vector<Weight>;
-using Matrix = std::vector<Array>;
 
 class Graph {
   std::vector<Edges> g;
