@@ -17,6 +17,7 @@ signed main(){
         flag[temp]=false;
     }
     vector<int>yebi;
+    vector<int>dp(n+1,0);
     rep(i,n)if(flag[i+1])yebi.push_back(i+1);
     rep(z,yebi.size()){
         int i=yebi[z];
@@ -24,11 +25,17 @@ signed main(){
         IsPrint[i]=false;
         flag[i]=false;
         pii next=mp[i];
-        rep(i,k-1){
+        for(int i=1;i<=k-1;i++){
             if(mp[next.first].second==0)break;
-            if(next.first==0)break;
-            if(IsPrint[next.first]==false){next=mp[next.first];break;}
+            if(IsPrint[next.first]==false){
+                if(dp[next.first]>=k-1-i)break;
+                dp[next.first]=max(dp[next.first],k-1-i);
+                IsPrint[next.first]=false;
+                next=mp[next.first];
+                continue;
+            }
             IsPrint[next.first]=false;
+            flag[next.first]=false;
             ans++;
             next=mp[next.first];
         }
