@@ -69,8 +69,8 @@ void case_59_random() {
 
 void case_60_corner() { // stack overflow attack (anti dfs)
   rep(num, 10) {
-    int N = rnd.next(MAX_N / 2, MAX_N);
-    int K = rnd.next(MAX_K / 2, MAX_K);
+    int N = num == 0 ? MAX_N : rnd.next(MAX_N - 100, MAX_N);
+    int K = num == 0 ? MAX_K : rnd.next(MAX_K - 100, MAX_K);
     vector<int> A(N);
     rep(i, N) A[i] = i;
     output(N, K, A, "60_corner", num);
