@@ -80,12 +80,12 @@ int main() {
   inf.readEof();
 
   if (s == t) {
-    cout << "Expected: s != t; Got s = " << s << ", t = " << t << ";" << endl;
+    cout << "Expected s != t; Got s = " << s << ", t = " << t << ";" << endl;
     return 1;
   }
   rep(i, M) {
     if (a[i] >= b[i]) {
-      cout << "Expected: a_" << i + 1 << " < b_" << i + 1 << "; Got a_" << i + 1 << " = " << a[i] << ", b_" << i + 1 << " = " << b[i] << ";" << endl;
+      cout << "Expected a_" << i + 1 << " < b_" << i + 1 << "; Got a_" << i + 1 << " = " << a[i] << ", b_" << i + 1 << " = " << b[i] << ";" << endl;
       return 1;
     }
   }
@@ -95,7 +95,7 @@ int main() {
   constexpr int INF = MAX_d * MAX_N;
   bool isReachable = dijkstra<INF>(g, s - 1)[t - 1] != INF;
   if (!isReachable) {
-    cout << "Expected: isReachable; Got s = " << s << ", t = " << t << ";" << endl;
+    cout << "Expected isReachable; Got s = " << s << ", t = " << t << ";" << endl;
     return 1;
   }
 }
