@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include "./testlib.h"
 #include "./constraints.hpp"
 #include <sys/types.h>
@@ -43,18 +44,43 @@ void makeR(int n){
     F[i]=rnd.next(MIN_F,MAX_F);
   }
 }
-void makeY(int n){
+void makeA(int n){
   int i,a=MAX_T/n*2,b=MAX_F/n,d;
-  t[0]=rnd.next(MIN_T,MIN(MAX_T,a));
-  F[0]=rnd.next(MIN_F,t[0]+1);
+  F[0]=MAX_F/2;
+  t[0]=rnd.next(F[0],MIN(MAX_T,F[0]+a));
   for(i=1;i<n;i++){
     t[i]=rnd.next(t[i-1]+1,MIN(t[i-1]+a,MAX_T-n+i+1));
     d=t[i]-t[i-1];
-    F[i]=rnd.next(MAX(MIN_F,F[i-1]-d),MIN(MAX_F,F[i-1]+d));
+    F[i]=rnd.next(MAX(d+2,F[i-1]-d),MIN(MAX_F,F[i-1]+d));
   }
 }
+int makeY(int n){
+  int i,a=MAX_T/n*2,b,d,c=1,max=0;
+  t[0]=rnd.next(MIN_T,1000);
+  F[0]=rnd.next(MIN_F,t[0]);
+  for(i=1;i<n;i++){
+    F[i]=rnd.next(MIN_F,3000);
+    d=abs(F[i]-F[i-1]);
+    b=t[i-1]+F[i]+F[i-1];
+    if(rnd.next(0,10)){
+      t[i]=rnd.next(t[i-1]+d,MIN(b-1,MAX_F));
+      c++;
+    }
+    else{
+      t[i]=rnd.next(b,MIN(b+a,MAX_T-n+i+1));
+      max=MAX(max,c);
+      c=1;
+    }
+  }
+  return MAX(max,c);
+}
+void makeL(int n){
+  int i,max=MIN(MAX_T,MAX_F),a=max/n*2;
+  for(i=0;i<n;i++)t[i]=F[i]=rnd.next(t[i-1]+1,MIN(t[i-1]+a,max-n+i+1));
+}
+
 int main(){
-  int n,d,i;
+  int n,d,i,j;
   char s[100];
   rnd.setSeed(time(0)+getpid());
 
@@ -105,15 +131,57 @@ int main(){
     makeR(n);
     out(n,d,s);
   }
-  
+  //*
+  for(i=0;i<10;i++){
+    n=rnd.next(MIN_N,100);
+    sprintf(s,"56_Not_-1_%02d.in",i);
+    d=makeY(n);printf("%d\n",d);
+    out(n,d,s);
+  }
+  //*/
   for(i=0;i<10;i++){
     n=rnd.next(MIN_N,MAX_N);
-    d=MAX_D;
-    sprintf(s,"56_Not_-1_%02d.in",i);
-    makeY(n);
+    d=rnd.next(n,MAX_D);
+    sprintf(s,"60_All_In_%02d.in",i);
+    makeA(n);
     out(n,d,s);
   }//*/
 
+  for(i=0;i<5;i++){
+    n=rnd.next(50,100);
+    sprintf(s,"61_Over_people_%02d.in",i);
+    d=makeY(n)-1;
+    out(n,d,s);
+  }
+
+  for(i=0;i<5;i++){
+    n=rnd.next(50,100);
+    sprintf(s,"62_Last_Over_%02d.in",i);
+    d=makeY(n);
+    t[n]=t[n-1]+F[n-1]+2;
+    F[n]=2;
+    for(j=0;j<d;j++){
+      t[n+j+1]=t[n+j]+1;
+      F[n+j+1]=2;
+    }
+    out(n+d+1,d,s);
+  }
+
+  for(i=0;i<5;i++){
+    n=rnd.next(MIN_N,MAX_N);
+    d=n;
+    if(i==4)n=MAX_N;
+    sprintf(s,"63_Line_%02d.in",i);
+    makeL(n);
+    out(n,d,s);
+  }
+
+  n=1;
+  d=1;
+  sprintf(s,"64_Highest_00.in");
+  t[0]=F[0]=MIN(MAX_T,MAX_F);
+  out(n,d,s);
+  
   return 0;
 }
 
