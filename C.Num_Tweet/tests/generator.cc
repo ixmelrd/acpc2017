@@ -108,6 +108,17 @@ void case_62_corner() { // many large walks
   }
 }
 
+void case_63_corner() { // replied by all others
+  rep(num, 10) {
+    int N = rnd.next(MAX_N - num, MAX_N);
+    int K = rnd.next(MIN_K, MIN_K + num);
+    vector<int> A(N);
+    A[0] = 0;
+    loop(i, 1, N) A[i] = 1;
+    output(N, K, A, "63_corner", num);
+  }
+}
+
 int main() {
   rnd.setSeed(time(0) + getpid());
   case_50_Nsmall_Ksmall();
@@ -119,4 +130,5 @@ int main() {
   case_60_corner();
   case_61_corner();
   case_62_corner();
+  case_63_corner();
 }
