@@ -37,7 +37,7 @@ pipを用いてインストールします.
 $ pip install git+https://github.com/icpc-jag/rime
 ```
 
-インストールが上手くいっているか確認する
+インストールに成功したか確認します.
 ```
 $ rime
 rime.py <command> [<options>...] [<args>...]
@@ -53,7 +53,7 @@ rime.py <command> [<options>...] [<args>...]
 ```
 
 
-テストが走ることを確認する
+テストが走ることを確認します.
 ```
 $ rime test
 [ COMPILE  ] A+B/tests: generator.cc
