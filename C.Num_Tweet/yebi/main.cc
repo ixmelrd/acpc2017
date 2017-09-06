@@ -16,9 +16,10 @@ signed main(){
         mp[i+1]=pii(temp,mp[temp].second+1);
         flag[temp]=false;
     }
-    for(int i=1; i<=n;i++){
-        if(flag[i]==false)continue;
-        //cout<<i<<endl;
+    vector<int>yebi;
+    rep(i,n)if(flag[i+1])yebi.push_back(i+1);
+    rep(z,yebi.size()){
+        int i=yebi[z];
         ans++;
         IsPrint[i]=false;
         flag[i]=false;
@@ -26,7 +27,7 @@ signed main(){
         rep(i,k-1){
             if(mp[next.first].second==0)break;
             if(next.first==0)break;
-            if(IsPrint[next.first]==false){next=mp[next.first];continue;}
+            if(IsPrint[next.first]==false){next=mp[next.first];break;}
             IsPrint[next.first]=false;
             ans++;
             next=mp[next.first];
