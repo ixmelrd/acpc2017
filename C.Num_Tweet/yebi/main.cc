@@ -8,7 +8,7 @@ signed main(){
     cin>>n>>k;
     vector<bool>flag(n+1,true);
     vector<bool>IsPrint(n+1,true);
-    map<int,pii>mp; //mp[index]=pii(next,dis)
+    vector<pii>mp(n+1);
     int ans=0;
     rep(i,n){
         int temp; cin>>temp;
@@ -34,27 +34,3 @@ signed main(){
     }
     cout<<ans<<endl;
 }
-/*
- 21 2
- 0
- 0
- 0
- 1
- 1
- 2
- 2
- 5
- 5
- 6
- 6
- 7
- 7
- 10
- 11
- 12
- 13
- 13
- 18
- 19
- 20
- */
