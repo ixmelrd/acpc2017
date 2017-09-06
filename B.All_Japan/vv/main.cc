@@ -21,7 +21,7 @@ int main() {
       continue;
     }
     if (diffF <= diffT && person < d) {
-      sumTime += person * diffF;
+      sumTime += person * diffT;
       person++;
       continue;
     }

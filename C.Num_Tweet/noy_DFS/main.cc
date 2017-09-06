@@ -9,44 +9,13 @@ using namespace std;
 vector<int> graph[100005];
 vector<int> leef, loot;
 
-void dfs(int n, int cur, vector<bool> &used){
-    bool f = false;
+void dfs(int cur, int k, bool used[100005]){
+    used[cur] = true;
     for(auto to : graph[cur]){
-        if(used[to]) continue;
-        used[to] = true;
-        dfs(n, to, used);
-        f = true;
-    }
-    if(not f) leef.emplace_back(cur);
-}
-
-
-int bfs(int n, int start, int k){
-    bool used[100005] = {0};
-    queue<pair<int, int>> q;
-
-    q.push(make_pair(start, k));
-    used[start] = 1;
-
-    int res = 0;
-    while(not q.empty()){
-        pair<int, int> cur = q.front(); q.pop();
-        //cout << "ur " << cur.first << endl;
-        res++;
-        //cout << "to " << cur.first << endl;
-        for(auto to : graph[cur.first]){
-            if(not used[to] && cur.second - 1 >= 0){
-                used[to] = true;
-                q.push(make_pair(to, cur.second - 1));
-            }
+        if(not used[to] && k - 1 >= 0){
+            dfs(to, k - 1, used);
         }
     }
-    for(auto i : loot){
-        //cout << "loot " << i << ' ' << used[i] << endl;
-        if(not used[i]) res++;
-    }
-    if(used[0]) res--;
-    return res - 1;
 }
 
 int main(){
@@ -54,23 +23,31 @@ int main(){
     cin >> n >> k;
 
     map<int,bool> m;
+    bool used[100005] = {0};
     for(int i = 0; i < n; i++){
         int a;
         cin >> a;
         m[a] = true;
-        if(a == 0) loot.emplace_back(i + 1);
-        graph[a].emplace_back(i + 1);
+        if(a == 0) used[i + 1] = true;
         graph[i + 1].emplace_back(a);
     }
 
-    vector<bool> used(n + 1, 0);
-    dfs(n, 0, used);
-
-    for(auto i : leef){
-        //cout << i << endl;
-        graph[i].emplace_back(n + 1);
-        graph[n + 1].emplace_back(i);
+    for(int i = 1; i <= n; i++){
+        if(not m.count(i)){
+            //cout << "leef " << i << endl;
+            leef.emplace_back(i);
+        }
     }
 
-    cout << bfs(n, n + 1, k) << endl;
+    for(auto i : leef){
+        dfs(i, k - 1, used);
+    }
+
+    int sum = 0;
+    range(i,1,n + 1){
+        if(used[i]) sum++;
+    }
+
+
+    cout << sum << endl;
 }
