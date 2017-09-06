@@ -1,6 +1,7 @@
 #include "./constraints.hpp"
 #include "./testlib.h"
 #include <cassert>
+#include <iostream>
 #include <numeric>
 #include <queue>
 #include <tuple>
@@ -78,12 +79,23 @@ int main() {
   }
   inf.readEof();
 
-  assert(s != t);
-  rep(i, M) assert(a[i] < b[i]);
+  if (s == t) {
+    cout << "Expected: s != t; Got s = " << s << ", t = " << t << ";" << endl;
+    return 1;
+  }
+  rep(i, M) {
+    if (a[i] >= b[i]) {
+      cout << "Expected: a_" << i + 1 << " < b_" << i + 1 << "; Got a_" << i + 1 << " = " << a[i] << ", b_" << i + 1 << " = " << b[i] << ";" << endl;
+      return 1;
+    }
+  }
   Graph g(N);
   loop(i, 1, N) g.addArc(i, i - 1, 0);
   rep(i, M) g.addArc(a[i] - 1, b[i] - 1, d[b[i] - 1]);
   constexpr int INF = MAX_d * MAX_N;
   bool isReachable = dijkstra<INF>(g, s - 1)[t - 1] != INF;
-  assert(isReachable);
+  if (!isReachable) {
+    cout << "Expected: isReachable; Got s = " << s << ", t = " << t << ";" << endl;
+    return 1;
+  }
 }
