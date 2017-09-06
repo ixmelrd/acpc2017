@@ -55,7 +55,7 @@ int main() {
   registerValidation();
   int N = inf.readInt(MIN_N, MAX_N);
   inf.readSpace();
-  int M = inf.readInt(MIN_M, MAX_M);
+  int M = inf.readInt(MIN_M, static_cast<int>(min(static_cast<long long>(MAX_M), static_cast<long long>(N) * (static_cast<long long>(N) - 1LL) / 2LL)));
   inf.readSpace();
   int s = inf.readInt(1, N);
   inf.readSpace();
