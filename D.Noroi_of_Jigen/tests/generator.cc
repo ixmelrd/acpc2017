@@ -80,6 +80,7 @@ int main(){
 	for(int j = s; j <= N+1; j++){
 	  if(imos[j] == 0){
 	    t = rnd.next(1, j-1);
+	    while(s == t) t = rnd.next(1, j-1);
 	    break;
 	  }
 	}
@@ -105,6 +106,7 @@ int main(){
       for(int j = s; j <= N+1; j++){
 	if(imos[j] == 0){
 	  t = rnd.next(1, j-1);
+	  while(s == t) t = rnd.next(1, j-1);
 	  break;
 	}
       }
