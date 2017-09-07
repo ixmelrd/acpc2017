@@ -71,8 +71,8 @@ int main(){
 	for(int i = 0; i < M; ++i){
 	  max_b = max(max_b, v[i].second);
 	}
-	int s = rnd.next(0, N);
-	int t = rnd.next(0, max(s,max_b));
+	int s = rnd.next(1, N);
+	int t = rnd.next(1, max(s,max_b));
         output(N, M, s, t, d, v, "50_random", i);
     }
 
@@ -86,8 +86,8 @@ int main(){
       for(int i = 0; i < M; ++i){
 	max_b = max(max_b, v[i].second);
       }
-      int s = rnd.next(0, N);
-      int t = rnd.next(0, max(s,max_b));
+      int s = rnd.next(1, N);
+      int t = rnd.next(1, max(s,max_b));
       output(N, M, s, t, d, v, "MAX_random", i);
     }
 
