@@ -15,7 +15,7 @@ int main() {
       cout << i + 1 << endl;
       return 0;
     }
-    for (int j = 1; j < s.size(); j++) s[j - 1] = s[j]; // O(N)
+    for (int j = 0; j < n - 1; j++) s[j] = s[j + 1]; // O(N)
   }
   cout << n << endl;
 }
