@@ -83,7 +83,7 @@ int main() {
   inf.readEof();
 
   if (s == t) {
-    cout << "Expected s != t; Got s = " << s << ", t = " << t << ";" << endl;
+    cout << "Expected s != t; Got s = t = " << s << ";" << endl;
     return 1;
   }
   map<pii, int> edges;
