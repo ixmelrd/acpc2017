@@ -16,7 +16,6 @@ int main() {
       return 0;
     }
     for (int j = 1; j < s.size(); j++) s[j - 1] = s[j]; // O(N)
-    s.pop_back();
   }
   cout << n << endl;
 }
