@@ -10,7 +10,7 @@ int main() {
   }
   string s;
   cin >> s;
-  for (int i = 0; i < n - 1; i++) { // O(N)
+  for (int i = 0; i < n - 1; i++) { // worst O(N)
     if (s[0] == 'x' && s[1] == 'x') {
       cout << i + 1 << endl;
       return 0;
