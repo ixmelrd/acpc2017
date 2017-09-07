@@ -67,17 +67,17 @@ int main(){
         int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
         vector<int> d = gen_d(N);
 	vector<pii> v = gen_v(N, M);
-	vector<int> imos(N+1, 0);
+	vector<int> imos(N+2, 0);
 	for(int j = 0; j < M; j++){
-	  imos[v[i].first]++;
-	  if(v[i].second < N) imos[v[i].second+1]--;
+	  imos[v[j].first]++;
+	  imos[v[j].second+1]--;
 	}
 	for(int j = 0; j < N; j++){
-	  imos[i+1]=imos[i]+imos[i+1];
+	  imos[j+1]=imos[j]+imos[j+1];
 	}
 	int t,s = rnd.next(1, N);
 	if(s==1 && imos[1]==0) s = rnd.next(2, N);
-	for(int j = s; j <= N; j++){
+	for(int j = s; j <= N+1; j++){
 	  if(imos[j] == 0){
 	    t = rnd.next(1, j-1);
 	    break;
@@ -92,17 +92,17 @@ int main(){
       int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
       vector<int> d = gen_d(N);
       vector<pii> v = gen_v(N, M);
-      vector<int> imos(N+1, 0);
+      vector<int> imos(N+2, 0);
       for(int j = 0; j < M; j++){
-	imos[v[i].first]++;
-	if(v[i].second < N) imos[v[i].second+1]--;
+	imos[v[j].first]++;
+	imos[v[j].second+1]--;
       }
       for(int j = 0; j < N; j++){
-	imos[i+1]=imos[i]+imos[i+1];
+	imos[j+1]=imos[j]+imos[j+1];
       }
       int t,s = rnd.next(1, N);
       if(s==1 && imos[1]==0) s = rnd.next(2, N);
-      for(int j = s; j <= N; j++){
+      for(int j = s; j <= N+1; j++){
 	if(imos[j] == 0){
 	  t = rnd.next(1, j-1);
 	  break;
