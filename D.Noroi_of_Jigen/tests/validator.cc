@@ -2,11 +2,14 @@
 #include "./testlib.h"
 #include <cassert>
 #include <iostream>
+#include <map>
 #include <numeric>
 #include <queue>
+#include <set>
 #include <tuple>
 #define loop(i, a, n) for (int i = (a); i < (n); i++)
 #define rep(i, n) loop(i, 0, n)
+using pii = std::pair<int, int>;
 template<typename A, typename B> bool cmin(A &a, const B &b) { return a > b ? (a = b, true) : false; }
 using namespace std;
 
@@ -83,7 +86,16 @@ int main() {
     cout << "Expected s != t; Got s = " << s << ", t = " << t << ";" << endl;
     return 1;
   }
+  map<pii, int> edges;
   rep(i, M) {
+    pii p(a[i], b[i]);
+    if (edges.count(p)) {
+      int j = edges[p];
+      cout << "Expected noMultiEdges; Got (a_" << j + 1 << ", b_" << j + 1 << ") = (a_" << i + 1 << ", b_" << i + 1 << ") = (" << a[i] << ", " << b[i] << ");" << endl;
+      return 1;
+    } else {
+      edges.insert({p, i});
+    }
     if (a[i] >= b[i]) {
       cout << "Expected a_" << i + 1 << " < b_" << i + 1 << "; Got a_" << i + 1 << " = " << a[i] << ", b_" << i + 1 << " = " << b[i] << ";" << endl;
       return 1;
