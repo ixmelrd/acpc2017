@@ -72,7 +72,7 @@ int main(){
 	  imos[v[j].first]++;
 	  imos[v[j].second+1]--;
 	}
-	for(int j = 0; j < N; j++){
+	for(int j = 0; j < N+1; j++){
 	  imos[j+1]=imos[j]+imos[j+1];
 	}
 	int t = -1;
@@ -99,7 +99,7 @@ int main(){
 	imos[v[j].first]++;
 	imos[v[j].second+1]--;
       }
-      for(int j = 0; j < N; j++){
+      for(int j = 0; j < N+1; j++){
 	imos[j+1]=imos[j]+imos[j+1];
       }
       int t = -1;
