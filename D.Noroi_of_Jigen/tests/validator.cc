@@ -93,9 +93,8 @@ int main() {
       int j = edges[p];
       cout << "Expected noMultiEdges; Got (a_" << j + 1 << ", b_" << j + 1 << ") = (a_" << i + 1 << ", b_" << i + 1 << ") = (" << a[i] << ", " << b[i] << ");" << endl;
       return 1;
-    } else {
-      edges.insert({p, i});
     }
+    edges.emplace(p, i);
     if (a[i] >= b[i]) {
       cout << "Expected a_" << i + 1 << " < b_" << i + 1 << "; Got a_" << i + 1 << " = " << a[i] << ", b_" << i + 1 << " = " << b[i] << ";" << endl;
       return 1;
