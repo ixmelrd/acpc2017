@@ -2,35 +2,37 @@
 #define int long long
 #define rep(i,n) for(int i=0; i<n;i++)
 using namespace std;
+typedef pair<int,int> pii;
+void call(){puts("-1");}
 signed main(){
     int n,d; cin>>n>>d;
-    typedef pair<int,int>pii;
-    vector<pii>v;
-    rep(i,n){
-        pii hoge; cin>>hoge.first>>hoge.second;
-        v.push_back(hoge);
-    }
-    int ans=0;
-    pii now=pii(0,1);
-    int cnt=0;
-    rep(i,n){
-        if(i==0&&v[i].second-1>v[i].first)return puts("-1")*0;
-        if(!i){cnt++;now=v[i]; continue;}
-        if(v[i].first-now.first<abs(now.second-v[i].second))return puts("-1")*0;
-        if(cnt==d&&v[i].first-now.first<now.second+v[i].second-2)return puts("-1")*0;
-        if(now==v[i]){cnt++;now=v[i];continue;}
-        if(now.second+v[i].second-2<=v[i].first-now.first){
-            ans+=(cnt*(now.second-1));
+    vector<int>t(n);
+    vector<int>r(n);
+    rep(i,n)cin>>t[i]>>r[i];
+    pii now=pii(0,0);
+    int cnt=0,ans=0;
+    for(int i=0; i<n;i++){
+        
+        if(cnt==d+1){call();;return 0;}
+        if(!i&&t[0]<r[0]-1){call();return 0;}
+        else if(!i){now=pii(t[i],r[i]);cnt++; continue;}
+        if(t[i]-now.first<abs(r[i]-now.second)){call();return 0;}
+        if(now.second+r[i]-2<=t[i]-now.first){
+            ans+=cnt*(now.second-1);
             cnt=1;
-            now=v[i];
+            now=pii(t[i],r[i]);
             continue;
-        }else if(v[i].second-now.second>=abs(v[i].second-now.second)){
-            ans+=abs(now.second-v[i].second)*cnt;
+        }
+        
+        if(now.second==r[i]){ans+=cnt*(t[i]-now.first);cnt++;now=pii(t[i],r[i]); continue;}
+        if(abs(now.second-r[i])<=t[i]-now.first){
+            ans+=cnt*abs(t[i]-now.first);
             cnt++;
-            now=v[i];
+            now=pii(t[i],r[i]);
+            continue;
         }
     }
-    ans+=(v[n-1].second-1)*cnt;
-    cout<<ans<<endl;
+    if(cnt>d){call();return 0;}
+    ans+=cnt*(now.second-1);
+    cout<<ans<<endl; return 0;
 }
-
