@@ -53,6 +53,16 @@ template<int inf> std::vector<Weight> dijkstra(const Graph &g, const int src) {
   return dist;
 }
 
+bool isReachable(int N, int M, int s, int t, vector<int> a, vector<int> b) {
+  if (t < s) return true;
+  Graph g(N);
+  loop(i, 1, N) g.addArc(i, i - 1, 0);
+  rep(i, M) g.addArc(a[i] - 1, b[i] - 1, 0);
+  constexpr int INF = 1;
+  bool isReachable = dijkstra<INF>(g, s - 1)[t - 1] != INF;
+  return isReachable;
+}
+
 int main() {
   registerValidation();
   int N = inf.readInt(MIN_N, MAX_N);
@@ -99,12 +109,7 @@ int main() {
       return 1;
     }
   }
-  Graph g(N);
-  loop(i, 1, N) g.addArc(i, i - 1, 0);
-  rep(i, M) g.addArc(a[i] - 1, b[i] - 1, d[b[i] - 1]);
-  constexpr int INF = MAX_d * MAX_N;
-  bool isReachable = dijkstra<INF>(g, s - 1)[t - 1] != INF;
-  if (!isReachable) {
+  if (!isReachable(N, M, s, t, a, b)) {
     cout << "Expected isReachable; Got s = " << s << ", t = " << t << ";" << endl;
     return 1;
   }
