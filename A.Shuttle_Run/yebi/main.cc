@@ -2,21 +2,13 @@
 using namespace std;
 #define rep(i,n) for(int i=0; i<n;i++)
 int main(){
+	int n; cin>>n;
 	string s; cin>>s;
-	bool Isreach=true;
-	bool past=true;
-	int cnt=0;
-	rep(i,s.size()){
-		if(s[i]=='o'){
-			past=true;
-			cnt++;
-		}else if(past==false){
-			Isreach=false;
-			break;
-		}else{
-			past=false;
+	rep(i,s.size()-1){
+		if(s[i]=='x'&&!(s[i]-s[i+1])){
+			cout<<i+1<<endl;
+			return 0;
 		}
 	}
-	if(Isreach)return puts("-1")*0;
-	cout<<cnt<<endl;
+	cout<<n<<endl;
 }

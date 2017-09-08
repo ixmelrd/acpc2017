@@ -30,12 +30,13 @@ int main(){
 		string s;
 		rep(i,length){
 			int num=rnd.next(1,100);
-			if(num%2)s.push_back('o');
+			if(num%2||s.back()=='x')s.push_back('o');
 			else s.push_back('x');
 		}
 		output(s,length,file_name);
 	}
-    /*最大テストケースを作成*/
+    /*最大テストケースを
+     a作成*/
     rep(case_num,TEST_CASE){
         char file_name[100];
         sprintf(file_name,"50-big-%02d.in",case_num);
@@ -43,7 +44,7 @@ int main(){
         string s;
         rep(i,length){
             int num=rnd.next(rangemin,rangemax);
-            if(num%10)s.push_back('o');
+            if(num%10||s.back()=='x')s.push_back('o');
             else s.push_back('x');
         }
         output(s,length,file_name);
@@ -56,7 +57,7 @@ int main(){
         string s;
         rep(i,length){
             int num=rnd.next(rangemin,rangemax);
-            if(num%10)s.push_back('o');
+            if(num%10||s.back()=='x')s.push_back('o');
             else s.push_back('x');
         }
         output(s,length,file_name);
@@ -69,7 +70,7 @@ int main(){
         string s;
         rep(i,length){
             int num=rnd.next(rangemin,rangemax);
-            if(num%2)s.push_back('o');
+            if(num%2||s.back()=='x')s.push_back('o');
             else s.push_back('x');
         }
         output(s,length,file_name);
@@ -82,7 +83,7 @@ int main(){
 		string s;
 		rep(i,length){
 			int num=rnd.next(rangemin,rangemax);
-			if(num%10)s.push_back('o');
+			if(num%10||s.back()=='x')s.push_back('o');
 			else s.push_back('x');
 		}
 		output(s,length,file_name);
