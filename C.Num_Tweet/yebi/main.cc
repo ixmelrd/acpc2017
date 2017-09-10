@@ -8,7 +8,7 @@ signed main(){
     cin>>n>>k;
     vector<bool>flag(n+1,true);
     vector<bool>IsPrint(n+1,true);
-    map<int,pii>mp; //mp[index]=pii(next,dis)
+    vector<pii>mp(n+1);
     int ans=0;
     rep(i,n){
         int temp; cin>>temp;
@@ -16,45 +16,29 @@ signed main(){
         mp[i+1]=pii(temp,mp[temp].second+1);
         flag[temp]=false;
     }
-    for(int i=1; i<=n;i++){
-        if(flag[i]==false)continue;
-        //cout<<i<<endl;
+    vector<int>yebi;
+    vector<int>dp(n+1,0);
+    rep(i,n)if(flag[i+1])yebi.push_back(i+1);
+    rep(z,yebi.size()){
+        int i=yebi[z];
         ans++;
         IsPrint[i]=false;
         flag[i]=false;
         pii next=mp[i];
-        rep(i,k-1){
+        for(int i=1;i<=k-1;i++){
             if(mp[next.first].second==0)break;
-            if(next.first==0)break;
-            if(IsPrint[next.first]==false){next=mp[next.first];continue;}
+            if(IsPrint[next.first]==false){
+                if(dp[next.first]>=k-1-i)break;
+                dp[next.first]=max(dp[next.first],k-1-i);
+                IsPrint[next.first]=false;
+                next=mp[next.first];
+                continue;
+            }
             IsPrint[next.first]=false;
+            flag[next.first]=false;
             ans++;
             next=mp[next.first];
         }
     }
     cout<<ans<<endl;
 }
-/*
- 21 2
- 0
- 0
- 0
- 1
- 1
- 2
- 2
- 5
- 5
- 6
- 6
- 7
- 7
- 10
- 11
- 12
- 13
- 13
- 18
- 19
- 20
- */
