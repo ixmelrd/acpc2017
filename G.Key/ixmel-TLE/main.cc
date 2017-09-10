@@ -75,8 +75,8 @@ int main(){
 			if(posi%2!=nega%2)continue;
 			int cnt=(sum_posi+max_posi-posi)/2+
 					(sum_nega+max_nega-nega)/2+
-					min(posi,nega)+
-					abs(posi-nega);
+					min(posi,nega)*2+
+					abs(posi-nega)/2*3;
 			out=min(out,cnt);
 //			rep(j,n)cout<<" "<<t[j];cout<<endl;
 //			rep(j,n)cout<<" "<<(i>>j&1);cout<<endl;
