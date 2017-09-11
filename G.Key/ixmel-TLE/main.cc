@@ -48,7 +48,7 @@ int main(){
 	vi in(n);
 	rep(i,n)cin>>in[i];
 	if(n==2){
-		if(in[0]==in[1])cout<<in[0]<<endl;
+		if(in[0]==in[1])cout<<min(in[0],m-in[0])<<endl;
 		else cout<<-1<<endl;
 	}else{
 //		vi posi,nega;
