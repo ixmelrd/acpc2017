@@ -52,7 +52,6 @@ vector<pii> gen_v(int N, int M) {
     v.emplace_back(pii(a, b));
     used.emplace(pii(a, b));
   }
-  shuffle(v.begin(), v.end());
   return v;
 }
 
@@ -67,24 +66,16 @@ int main(){
         int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
         vector<int> d = gen_d(N);
 	vector<pii> v = gen_v(N, M);
-	vector<int> imos(N+2, 0);
-	for(int j = 0; j < M; j++){
-	  imos[v[j].first]++;
-	  imos[v[j].second+1]--;
+	sort(v.begin(), v.end());
+	int s = 0, t = 0;
+	while(s == t){
+	  s = rnd.next(1, N);
+	  int max_b = s;
+	  for(int j = 0; j < M; j++)
+	    if(v[j].first < max_b) max_b = v[j].second;
+	  t = rnd.next(1, max_b);
 	}
-	for(int j = 0; j < N+1; j++){
-	  imos[j+1]=imos[j]+imos[j+1];
-	}
-	int t = -1;
-	int s = rnd.next(1, N);
-	if(s==1 && imos[1]==0) s = rnd.next(2, N);
-	for(int j = s; j <= N+1; j++){
-	  if(imos[j] == 0){
-	    t = rnd.next(1, j-1);
-	    while(s == t) t = rnd.next(1, j-1);
-	    break;
-	  }
-	}
+        shuffle(v.begin(), v.end());   
         output(N, M, s, t, d, v, "50_random", i);
     }
 
@@ -94,24 +85,17 @@ int main(){
       int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
       vector<int> d = gen_d(N);
       vector<pii> v = gen_v(N, M);
-      vector<int> imos(N+2, 0);
-      for(int j = 0; j < M; j++){
-	imos[v[j].first]++;
-	imos[v[j].second+1]--;
+
+      sort(v.begin(), v.end());
+      int s = 0, t = 0;
+      while(s == t){
+	s = rnd.next(1, N);
+	int max_b = s;
+	for(int j = 0; j < M; j++)
+	  if(v[j].first < max_b) max_b = v[j].second;
+	t = rnd.next(1, max_b);
       }
-      for(int j = 0; j < N+1; j++){
-	imos[j+1]=imos[j]+imos[j+1];
-      }
-      int t = -1;
-      int s = rnd.next(1, N);
-      if(s==1 && imos[1]==0) s = rnd.next(2, N);
-      for(int j = s; j <= N+1; j++){
-	if(imos[j] == 0){
-	  t = rnd.next(1, j-1);
-	  while(s == t) t = rnd.next(1, j-1);
-	  break;
-	}
-      }
+      shuffle(v.begin(), v.end());
       output(N, M, s, t, d, v, "MAX_random", i);
     }
 
