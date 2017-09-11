@@ -49,7 +49,7 @@ int main(){
         int N = rnd.next(12, MAX_N);
         int M = rnd.next(12, MAX_M);
         vector<int> v = create(N, M);
-        output(N, M, v, "50_random_large", i);
+        output(N, M, v, "51_random_large", i);
     }
 
     //ランダム
@@ -57,15 +57,15 @@ int main(){
         int N = rnd.next(MIN_N, MAX_N);
         int M = rnd.next(MIN_M, MAX_M);
         vector<int> v = create(N, M);
-        output(N, M, v, "50_random", i);
+        output(N, M, v, "52_random", i);
     }
 
     //最大ケース
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 10; i++){
         int N = MAX_N;
         int M = MAX_M;
         vector<int> v = create(N, M);
-        output(N, M, v, "60_maximum", i);
+        output(N, M, v, "61_maximum", i);
     }
 
     //最小ケース
