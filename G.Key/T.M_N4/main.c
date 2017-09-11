@@ -43,6 +43,11 @@ int main(){
     scanf("%d",&d[i]);
     if(m%2==0&&d[i]==m/2)c++;
   }
+  if(n==2){
+    if(d[0]==d[1])ans=MIN(d[0],m-d[0]);
+    printf("%d\n",ans-1e9?ans:-1);
+    return 0;
+  }  
   for(l=0;l<=c;l++){
     ans=MIN(ans,g(n,n,n,l));//printf("%d\n",ans);
     for(i=0;i<n;i++){

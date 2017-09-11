@@ -34,18 +34,23 @@ int main(){
   int n,i,j[3],k,l,o,max[2],ans=1e9,sum[2],a[2][6],b[2][6],c=0,t,d[2][6]={};
   scanf("%d %d",&n,&m);
   for(i=0;i<n;i++)scanf("%d",&s[i]);
+  if(n==2){
+    if(s[0]==s[1])ans=MIN(s[0],m-s[0]);
+    printf("%d\n",ans-1e9?ans:-1);
+    return 0;
+  }  
   for(i=0;i<n;i++){
     if(m%2==0&&s[i]==m/2)c++;
     else if(s[i]<=m/2)in(d[0],s[i]);
     else              in(d[1],m-s[i]);
-  }
-  /*for(i=0;i<2;i++){
+  }/*
+  for(i=0;i<2;i++){
     for(k=0;k<6;k++)printf("%d ",d[i][k]);
     printf("\n");
     }printf("%d\n",c);//*/
   //printf("%d\n",c);
   if(c>3){
-    printf("%d\n",(d[0][5]+d[1][5]+c*m/2)/2);
+    printf("%d\n",(d[0][5]+d[1][5]+c*m/2)%2?-1:(d[0][5]+d[1][5]+c*m/2)/2);
     return 0;
   }
   for(l=0;l<=c;l++){
