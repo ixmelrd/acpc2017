@@ -160,5 +160,25 @@ int main(){
       output(N, M, s, t, d, v, "80_slarge_tsmall_random", i);
     }
 
+    // 小さいケース
+
+    for(int i = 0; i < 10; ++i){
+      int N = rnd.next(MIN_N, 10);
+      int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
+      vector<int> d = gen_d(N);
+      vector<pii> v = gen_v(N, M);
+      sort(v.begin(), v.end());
+      int s = 0, t = 0;
+      while(s == t){
+	s = rnd.next(1, N);
+	int max_b = s;
+	for(int j = 0; j < M; j++)
+	  if(v[j].first < max_b) max_b = v[j].second;
+	t = rnd.next(1, max_b);
+      }
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "40_small_random", i);
+    }
+
 
 }
