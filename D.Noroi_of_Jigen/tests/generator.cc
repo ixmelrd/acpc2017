@@ -7,6 +7,7 @@
 #include <cassert>
 #include <algorithm>
 #include <set>
+#include <cmath>
 
 using namespace std;
 
@@ -101,13 +102,13 @@ int main(){
 
     //  M 最大ケース
     for(int i = 0; i < 5; ++i){
-      int N = rnd.next(MIN_N, MAX_N);
+      int N = rnd.next(MIN_N, (int)sqrt(MAX_N*2));
       int M = (long long)N*(N-1)/2;
       vector<int> d = gen_d(N);
       vector<pii> v;
       for(int j = 1; j < N; j++) for(int k = j+1; k <= N; k++) v.emplace_back(pii(j,k));
       int s = 0, t = 0;
-      while(s != t){
+      while(s == t){
 	s = rnd.next(1, N);
 	t = rnd.next(1, N);
       }
@@ -118,13 +119,13 @@ int main(){
 
     //  N M 最大ケース
     for(int i = 0; i < 1; ++i){
-      int N = MAX_N;
+      int N = sqrt(MAX_N*2);
       int M = (long long)N*(N-1)/2;
       vector<int> d = gen_d(N);
       vector<pii> v;
       for(int j = 1; j < N; j++) for(int k = j+1; k <= N; k++) v.emplace_back(pii(j,k));
       int s = 0, t = 0;
-      while(s != t){
+      while(s == t){
         s = rnd.next(1, N);
         t = rnd.next(1, N);
       }
@@ -142,7 +143,7 @@ int main(){
       int s = rnd.next(2, N);
       int t = rnd.next(1, s-1);
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "sLarge_tSmall_random", i);
+      output(N, M, s, t, d, v, "slarge_tsmall_random", i);
     }
 
 
