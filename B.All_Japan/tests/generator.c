@@ -169,7 +169,7 @@ int main(){
   }
 
   for(i=0;i<5;i++){
-    n=rnd.next(MIN_N,MAX_N);
+    n=rnd.next(MAX(MIN_N,2),MAX_N);
     d=n;
     if(i==4)n=MAX_N;
     sprintf(s,"63_Line_%02d.in",i);
