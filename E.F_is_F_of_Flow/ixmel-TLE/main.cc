@@ -102,7 +102,7 @@ class MF{//max flow
 		}
 	}//4 4 0 1 3 0 2 4 1 3 1 2 3 5
 	int solve(){
-		int flow=inf;
+		int flow=mf(0,n-1);
 		rep(i,n)rep(j,hozon[i].size()){
 			edge e=hozon[i][j];
 			if(e.no==1&&e.cap==1){
