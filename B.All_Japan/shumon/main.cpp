@@ -53,6 +53,7 @@ using namespace std;
 #else
 #define INF (0x7fffffffffffffff)
 #endif
+#define LINF (0x7fffffffffffffff)
 
 typedef  long long           ll;
 typedef  unsigned            ui;
@@ -76,17 +77,17 @@ signed main(void)
   in(int,n,d);
   dout(n);
   dout(d);
-  vector<i_i> tf(n+1);
+  vector<ll_i> tf(n+1);
   i_i now=make_pair(0,0);
   ll sum=0;
-  int a=0;
-  int ds;
-  int i;
+  ll a=0;
+  ll ds;
+  ll i;
 
   rep(i,n)
     cin>>tf[i].F>>tf[i].S,tf[i].S--;
-  tf[n]=make_pair(INF,0);
-  int f,nf;
+  tf[n]=make_pair(LINF,0);
+  ll f,nf;
 
   rep(i,n+1)
     {

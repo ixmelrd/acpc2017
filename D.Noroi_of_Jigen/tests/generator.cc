@@ -160,6 +160,21 @@ int main(){
       output(N, M, s, t, d, v, "80_slarge_tsmall_random", i);
     }
 
+
+    //　N 最大 s=1 t=N 1点からすべてに行けるケース
+    for(int i = 0; i < 1; ++i){
+      int N = MAX_N;
+      int M = N-1;
+      vector<int> d = gen_d(N);
+      vector<pii> v;
+      for(int j = 2; j <= N; j++) v.emplace_back(pii(1,j));
+      int s = 1;
+      int t = N;
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "90_s1tN_all_NMAX", i);
+    }
+
+
     // 小さいケース
 
     for(int i = 0; i < 10; ++i){
@@ -179,6 +194,8 @@ int main(){
       shuffle(v.begin(), v.end());
       output(N, M, s, t, d, v, "40_small_random", i);
     }
+
+
 
 
 }
