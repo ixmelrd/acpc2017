@@ -58,7 +58,7 @@ ll solve(ll n,ll m){
 		}
 	}
 	ll out=0;
-	rep(i,m+1)(out+=cnt[i]*nCr(m,i))%=MOD;
+	rep(i,m+1)(out+=cnt[i]*nCr(m,i)+MOD)%=MOD;
 	return out;
 }
 int main(){
