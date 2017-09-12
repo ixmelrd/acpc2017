@@ -79,8 +79,8 @@ int main(){
         output(N, M, s, t, d, v, "50_random", i);
     }
 
-    //　最大ケース
-    for(int i = 0; i < 1; ++i){
+    //　N 最大ケース
+    for(int i = 0; i < 5; ++i){
       int N = MAX_N;
       int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
       vector<int> d = gen_d(N);
@@ -96,7 +96,53 @@ int main(){
 	t = rnd.next(1, max_b);
       }
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "MAX_random", i);
+      output(N, M, s, t, d, v, "NMAX_random", i);
+    }
+
+    //  M 最大ケース
+    for(int i = 0; i < 5; ++i){
+      int N = rnd.next(MIN_N, MAX_N);
+      int M = (long long)N*(N-1)/2;
+      vector<int> d = gen_d(N);
+      vector<pii> v;
+      for(int j = 1; j < N; j++) for(int k = j+1; k <= N; k++) v.emplace_back(pii(j,k));
+      int s = 0, t = 0;
+      while(s != t){
+	s = rnd.next(1, N);
+	t = rnd.next(1, N);
+      }
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "MMAX_random", i);
+    }
+
+
+    //  N M 最大ケース
+    for(int i = 0; i < 1; ++i){
+      int N = MAX_N;
+      int M = (long long)N*(N-1)/2;
+      vector<int> d = gen_d(N);
+      vector<pii> v;
+      for(int j = 1; j < N; j++) for(int k = j+1; k <= N; k++) v.emplace_back(pii(j,k));
+      int s = 0, t = 0;
+      while(s != t){
+        s = rnd.next(1, N);
+        t = rnd.next(1, N);
+      }
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "NMMAX", i);
+    }
+
+
+    // s > t 
+    for(int i = 0; i < 5; ++i){
+      int N = rnd.next(MIN_N, MAX_N);
+      int M = rnd.next((long long)MIN_M, min((long long)N*(N-1)/2,(long long)MAX_M));
+      vector<int> d = gen_d(N);
+      vector<pii> v = gen_v(N, M);
+      int s = rnd.next(2, N);
+      int t = rnd.next(1, s-1);
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "sLarge_tSmall_random", i);
     }
 
 
