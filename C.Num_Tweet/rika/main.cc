@@ -2,26 +2,28 @@
 #include<vector>
 using namespace std;
 
-vector<bool> ans(100005,false);//seen
-int n,k;
-int a[100005]={};
-
-void dfs(int i,int t){
-  if(t>=k)return;
-  ans[i]=true;
-  if(a[i-1])dfs(a[i-1],t+1);
-}
-
 int main(){
+  int n,k;
   cin>>n>>k;
-  vector<bool> t(n+1,true);//bottom
-  for(int i=0;i<n;i++){
+  vector<bool> b(n+1,true);//bottom
+  int a[100005]={};
+  for(int i=1;i<=n;i++){
     cin>>a[i];
-    if(a[i]==0)ans[i+1]=true;
-    else t[a[i]]=false;
+    if(a[i])b[a[i]]=false;
   }
-  for(int i=1;i<=n;i++)if(t[i])dfs(i,0);
-  int sum=0;
-  for(int i=1;i<=n;i++)if(ans[i])sum++;
-  cout<<sum<<endl;
+  vector<int> rank(100005,100000);
+  for(int i=1;i<=n;i++)
+    if(b[i]){
+      rank[i]=1;
+      int j=i;
+      while(a[j]!=0){
+	if(rank[j]+1>=rank[a[j]])break;
+	rank[a[j]]=rank[j]+1;
+	j=a[j];
+      }
+    }
+
+  int ans=0;
+  for(int i=1;i<=n;i++)if(a[i]==0 || rank[i]<=k)ans++;
+  cout<<ans<<endl;
 }
