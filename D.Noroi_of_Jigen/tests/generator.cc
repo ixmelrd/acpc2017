@@ -134,6 +134,20 @@ int main(){
     }
 
 
+    //　N 最大 s=1 t=N 階段ケース 
+    for(int i = 0; i < 1; ++i){
+      int N = MAX_N;
+      int M = N-1;
+      vector<int> d = gen_d(N);
+      vector<pii> v;
+      for(int j = 1; j < N; j++) v.emplace_back(pii(j,j+1));
+      int s = 1;
+      int t = N;
+      shuffle(v.begin(), v.end());
+      output(N, M, s, t, d, v, "s1tN_NMAX", i);
+    }
+
+
     // s > t 
     for(int i = 0; i < 5; ++i){
       int N = rnd.next(MIN_N, MAX_N);
