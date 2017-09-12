@@ -76,7 +76,7 @@ int makeY(int n){
 }
 void makeL(int n){
   int i,max=MIN(MAX_T,MAX_F),a=max/n*2;
-  t[0]=F[0]=rnd.next(1,a);
+  t[0]=F[0]=rnd.next(2,a);
   for(i=1;i<n;i++)t[i]=F[i]=rnd.next(t[i-1]+1,MIN(t[i-1]+a,max-n+i+1));
 }
 
