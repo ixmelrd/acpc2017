@@ -85,7 +85,7 @@ int V;
 vector<edge> G[MAX_V];
 int d[MAX_V];
 
-void dijkstra(int s)
+void dijkstra(int s,int g)
 {
   int i;
   priority_queue<i_i,vector<i_i>,greater<i_i> > que;
@@ -96,6 +96,7 @@ void dijkstra(int s)
     {
       darray(d,6);
       i_i p=que.top();
+      if(p.S==g)return;
       que.pop();
       int v=p.second;
       if(d[v]<p.first) continue;
@@ -141,7 +142,7 @@ signed main(void)
       dputs("");
     }
   V=n;    
-  dijkstra(s-1);
+  dijkstra(s-1,t-1);
   darray(d,n);
   dout(s-1);
   dout(t-1);
