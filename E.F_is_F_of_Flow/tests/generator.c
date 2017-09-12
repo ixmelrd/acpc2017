@@ -82,6 +82,53 @@ void makeP(int v){
     if(rnd.next(0,1))c[i]=1;
   }
 }
+void makeC(int v){
+  int i,r[100010];
+  for(i=0;i<v;i++)r[i]=i;
+  for(i=0;i<v;i++)swap(&r[i],&r[rnd.next(0,v-1)]);
+  for(i=0;i<v-2;i++){
+    a[i]=r[i];
+    b[i]=r[i+1];
+    c[i]=v;
+  }
+  for(i=0;i<v-1;i++){
+    a[i+v-2]=r[i];
+    b[i+v-2]=r[v-1];
+    c[i+v-2]=1;
+  }
+}
+void challenge00(){
+  int v,e;
+  char s[100];
+  v=MAX_V/2+1;
+  e=v*2-3;
+  makeC(v);
+  sprintf(s,"60_challenge_00.in");
+  out(v,e,s);
+}
+void challenge01(){
+  int v,e;
+  char s[100];
+  v=MAX_V/2;
+  e=v*2-2;
+  sprintf(s,"60_challenge_01.in");
+  makeC(v);
+  a[e-1]=v;
+  b[e-1]=a[0];
+  c[e-1]=200;
+  out(v+1,e,s);
+}
+void challenge02(){
+  int v,e;
+  char s[100];
+  v=MAX_V/2;
+  e=v*2-2;
+  sprintf(s,"60_challenge_02.in");
+  makeC(v);
+  a[e-1]=b[v];
+  b[e-1]=v;
+  c[e-1]=200;
+}  
 int main(){
   int v,e,i,j;
   char s[100];
@@ -157,6 +204,10 @@ int main(){
     for(j=0;j<e;j++)c[j]=(c[j]-1)%100+1;
     out(v,e,s);
   }
+  
+  challenge00();
+  challenge01();
+  challenge02();
   //*/
   return 0;
 }
