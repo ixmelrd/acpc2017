@@ -97,7 +97,7 @@ int main(){
 	t = rnd.next(1, max_b);
       }
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "NMAX_random", i);
+      output(N, M, s, t, d, v, "60_NMAX_random", i);
     }
 
     //  M 最大ケース
@@ -113,7 +113,7 @@ int main(){
 	t = rnd.next(1, N);
       }
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "MMAX_random", i);
+      output(N, M, s, t, d, v, "60_MMAX_random", i);
     }
 
 
@@ -130,7 +130,7 @@ int main(){
         t = rnd.next(1, N);
       }
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "NMMAX", i);
+      output(N, M, s, t, d, v, "60_NMMAX", i);
     }
 
 
@@ -144,7 +144,7 @@ int main(){
       int s = 1;
       int t = N;
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "s1tN_NMAX", i);
+      output(N, M, s, t, d, v, "70_s1tN_NMAX", i);
     }
 
 
@@ -157,7 +157,7 @@ int main(){
       int s = rnd.next(2, N);
       int t = rnd.next(1, s-1);
       shuffle(v.begin(), v.end());
-      output(N, M, s, t, d, v, "slarge_tsmall_random", i);
+      output(N, M, s, t, d, v, "80_slarge_tsmall_random", i);
     }
 
 
