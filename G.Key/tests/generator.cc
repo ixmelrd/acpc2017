@@ -38,16 +38,16 @@ int main(){
 
     //小さいケース
     for(int i = 0; i < 10; i++){
-        int N = rnd.next(MIN_N, 4);
-        int M = rnd.next(MIN_M, 4);
+        int N = rnd.next(MIN_N, MIN_N + 5);
+        int M = rnd.next(MIN_M, MIN_N + 5);
         vector<int> v = create(N, M);
         output(N, M, v, "50_random_small", i);
     }
 
     //大きいケース
     for(int i = 0; i < 10; i++){
-        int N = rnd.next(12, MAX_N);
-        int M = rnd.next(12, MAX_M);
+        int N = rnd.next(MAX_N - 5, MAX_N);
+        int M = rnd.next(MAX_N - 5, MAX_M);
         vector<int> v = create(N, M);
         output(N, M, v, "51_random_large", i);
     }
