@@ -84,7 +84,7 @@ void makeP(int v){
 }
 void makeC(int v){
   int i,r[100010];
-  for(i=0;i<v;i++)r[i]=i;
+  for(i=0;i<v;i++)r[i]=i+1;
   for(i=0;i<v;i++)swap(&r[i],&r[rnd.next(0,v-1)]);
   for(i=0;i<v-2;i++){
     a[i]=r[i];
@@ -100,35 +100,41 @@ void makeC(int v){
 void challenge00(){
   int v,e;
   char s[100];
-  v=MAX_V/2+1;
-  e=v*2-3;
-  makeC(v);
+  v=MAX_V/2+2;
+  e=v*2-4;
   sprintf(s,"60_challenge_00.in");
+  makeC(v-1);
+  a[e-1]=0;
+  b[e-1]=a[0];
+  c[e-1]=MAX_C;
   out(v,e,s);
 }
 void challenge01(){
   int v,e;
   char s[100];
-  v=MAX_V/2;
-  e=v*2-2;
+  v=MAX_V/2+2;
+  e=v*2-4;
   sprintf(s,"60_challenge_01.in");
-  makeC(v);
-  a[e-1]=v;
+  makeC(v-1);
+  a[e-1]=0;
   b[e-1]=a[0];
   c[e-1]=200;
-  out(v+1,e,s);
+  out(v,e,s);
 }
 void challenge02(){
   int v,e;
   char s[100];
-  v=MAX_V/2;
-  e=v*2-2;
+  v=MAX_V/2+1;
+  e=v*2-4;
   sprintf(s,"60_challenge_02.in");
-  makeC(v);
+  makeC(v-1);
+  a[e]=0;
+  b[e]=a[0];
+  c[e]=MAX_C;
   a[e-1]=b[v];
   b[e-1]=v;
   c[e-1]=200;
-  out(v+1,e,s);
+  out(v+1,e+1,s);
 }
 void challenge03(){
   int v,e,i;
