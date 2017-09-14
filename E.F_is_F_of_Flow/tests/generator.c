@@ -59,7 +59,7 @@ void makeG(int v,int e){
     a[i]=rnd.next(0,v-2);
     b[i]=rnd.next(a[i]+1,v-1);
     c[i]=rnd.next(MIN_C,MAX_C);
-    if(rnd.next(0,1))c[i]=1;
+    if(rnd.next(0,2))c[i]=1;
     for(j=ta[a[i]];j+1;j=nt[j]){
       if(b[j]==b[i])break;
     }
@@ -79,7 +79,7 @@ void makeP(int v){
     a[i]=r[i];
     b[i]=r[i+1];
     c[i]=rnd.next(MIN_C,MAX_C);
-    if(rnd.next(0,1))c[i]=1;
+    //if(rnd.next(0,1))c[i]=1;
   }
 }
 void makeC(int v){
@@ -128,7 +128,24 @@ void challenge02(){
   a[e-1]=b[v];
   b[e-1]=v;
   c[e-1]=200;
-}  
+  out(v+1,e,s);
+}
+void challenge03(){
+  int v,e,i;
+  char s[100];
+  v=MAX_V/2+2;
+  e=MAX_E/2;
+  sprintf(s,"60_challenge_03.in");
+  for(i=0;i<e;i++){
+    a[i]=0;
+    b[i]=i+1;
+    c[i]=1;
+    a[i+e]=i+1;
+    b[i+e]=v-1;
+    c[i+e]=1;
+  }
+  out(v,e*2,s);
+}
 int main(){
   int v,e,i,j;
   char s[100];
@@ -150,12 +167,14 @@ int main(){
     out(v,e,s);
   }
   
-  v=MIN_V;
-  e=MIN_E;
-  sprintf(s,"52_MIN_00.in");
-  makeG(v,e);
-  out(v,e,s);
-
+  for(i=0;i<3;i++){
+    v=MIN_V;
+    e=MIN_E;
+    sprintf(s,"52_MIN_%02d.in",i);
+    makeG(v,e);
+    out(v,e,s);
+  }
+  
   for(i=0;i<5;i++){
     v=MAX_V;
     e=MAX_E;
@@ -204,10 +223,20 @@ int main(){
     for(j=0;j<e;j++)c[j]=(c[j]-1)%100+1;
     out(v,e,s);
   }
+
+  for(i=0;i<10;i++){
+    v=rnd.next(MIN_V,MAX_V);
+    e=rnd.next(v-1,MIN(MAX_E,v*(v-1)/2));
+    sprintf(s,"59_All_cost_1_%02d.in",i);
+    makeG(v,e);
+    for(j=0;j<e;j++)c[j]=1;
+    out(v,e,s);
+  }
   
   challenge00();
   challenge01();
   challenge02();
+  challenge03();
   //*/
   return 0;
 }
