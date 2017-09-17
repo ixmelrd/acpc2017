@@ -47,7 +47,7 @@ int main(){
   }
   if(c>4){
     if((d[0][5]+d[1][5]+c*m/2)%2)printf("-1\n");
-    else printf("%d\n",(d[0][5]+d[1][5]+c*m/2)/2+(d[0][5]%2));
+    else printf("%d\n",(d[0][5]+d[1][5]+c*m/2)/2+(d[0][5]%2)*(1-m/2%2));
     return 0;
   }
   for(l=0;l<=c;l++){
