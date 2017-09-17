@@ -44,13 +44,8 @@ int main(){
     if(m%2==0&&s[i]==m/2)c++;
     else if(s[i]<=m/2)in(d[0],s[i]);
     else              in(d[1],m-s[i]);
-  }/*
-  for(i=0;i<2;i++){
-    for(k=0;k<6;k++)printf("%d ",d[i][k]);
-    printf("\n");
-    }printf("%d\n",c);//*/
-  //printf("%d\n",c);
-  if(c>3){
+  }
+  if(c>4){
     if((d[0][5]+d[1][5]+c*m/2)%2)printf("-1\n");
     else printf("%d\n",(d[0][5]+d[1][5]+c*m/2)/2+(d[0][5]%2));
     return 0;
