@@ -4,6 +4,7 @@ int n,m,sum[2],max[2],c=0,d[100010]={};
 int MAX(int a,int b){return a<b?b:a;}
 int MIN(int a,int b){return a<b?a:b;}
 int p(int a,int b,int c,int d){//max sum max sum
+  if(a<0||b<0||c<0||d<0)return 1e9;
   int s=0;
   b-=a;
   d-=c;

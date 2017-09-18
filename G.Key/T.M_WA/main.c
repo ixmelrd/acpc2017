@@ -44,10 +44,14 @@ int main(){
     if(m%2==0&&s[i]==m/2)c++;
     else if(s[i]<=m/2)in(d[0],s[i]);
     else              in(d[1],m-s[i]);
-  }
-  if(c>4){
-    if((d[0][5]+d[1][5]+c*m/2)%2)printf("-1\n");
-    else printf("%d\n",(d[0][5]+d[1][5]+c*m/2)/2+(d[0][5]%2)*(1-m/2%2));
+  }/*
+  for(i=0;i<2;i++){
+    for(k=0;k<6;k++)printf("%d ",d[i][k]);
+    printf("\n");
+    }printf("%d\n",c);//*/
+  //printf("%d\n",c);
+  if(c>3){
+    printf("%d\n",(d[0][5]+d[1][5]+c*m/2)%2?-1:(d[0][5]+d[1][5]+c*m/2)/2);
     return 0;
   }
   for(l=0;l<=c;l++){
@@ -83,41 +87,36 @@ int main(){
       if(m%2==0&&s[j[0]]==m/2)continue;
       for(j[1]=j[0]+1;j[1]<n+1;j[1]++){
 	if(m%2==0&&s[j[1]]==m/2)continue;
-	for(j[2]=j[1]+1;j[2]<n+2;j[2]++){
-	  if(m%2==0&&s[j[2]]==m/2)continue;
-
-	  for(k=0;k<2;k++){
-	    for(o=0;o<6;o++)b[k][o]=a[k][o];
-	  }
-	  
-	  for(k=0;k<3;k++){//printf(":%d ",j[k]);
-	    if(j[k]>=n)continue;//printf("%d:\n",s[j[k]]);
-	    //printf("::%d\n",s[j[k]]);
-	    if(s[j[k]]<(m+1)/2)f(b[0],b[1],s[j[k]]);
-	    else               f(b[1],b[0],m-s[j[k]]);
-	    //for(o=0;o<6;o++)printf("%d ",b[0][o]);printf("!\n");
-	    //for(o=0;o<6;o++)printf("%d ",b[1][o]);printf("!\n");
-	  }//printf("\n");
-	  for(o=t=0;o<2;o++){
-	    //for(k=0;k<6;k++)printf("%d ",b[o][k]);printf("\n");
-	    
-	    for(i=max[o]=0;i<4;i++)max[o]=MAX(max[o],b[o][i]);
-	  }
-	  /*
-	    sum[o]=b[o][5]-max[o];
-	    t+=max[o]>sum[o]?sum[o]:(sum[o]+max[o])/2;
-	    max[o]=MAX(0,max[o]-sum[o]);
-	    //printf("%d %d ",max[o],sum[o]);
-	    }//printf("\n");//*/
-	  //printf("!!%d %d\n",max[0],max[1]);
-	  if(b[0][5]%2-b[1][5]%2)continue;
-	  if(b[0][5]%2){
-	    ans=MIN(ans,p(max[0]-1,b[0][5]-1,max[1]  ,b[1][5]+1)+1);
-	    ans=MIN(ans,p(max[0]  ,b[0][5]+1,max[1]-1,b[1][5]-1)+1);
-	  }
-	  else ans=MIN(ans,p(max[0],b[0][5],max[1],b[1][5]));
-	  //printf("%d\n",ans);
+	for(k=0;k<2;k++){
+	  for(o=0;o<6;o++)b[k][o]=a[k][o];
 	}
+	for(k=0;k<2;k++){//printf(":%d ",j[k]);
+	  if(j[k]>=n)continue;//printf("%d:\n",s[j[k]]);
+	  //printf("::%d\n",s[j[k]]);
+	  if(s[j[k]]<(m+1)/2)f(b[0],b[1],s[j[k]]);
+	  else               f(b[1],b[0],m-s[j[k]]);
+	  //for(o=0;o<6;o++)printf("%d ",b[0][o]);printf("!\n");
+	  //for(o=0;o<6;o++)printf("%d ",b[1][o]);printf("!\n");
+	}//printf("\n");
+	for(o=t=0;o<2;o++){
+	  //for(k=0;k<6;k++)printf("%d ",b[o][k]);printf("\n");
+	    
+	  for(i=max[o]=0;i<4;i++)max[o]=MAX(max[o],b[o][i]);
+	}
+	/*
+	  sum[o]=b[o][5]-max[o];
+	  t+=max[o]>sum[o]?sum[o]:(sum[o]+max[o])/2;
+	  max[o]=MAX(0,max[o]-sum[o]);
+	  //printf("%d %d ",max[o],sum[o]);
+	  }//printf("\n");//*/
+	//printf("!!%d %d\n",max[0],max[1]);
+	if(b[0][5]%2-b[1][5]%2)continue;
+	if(b[0][5]%2){
+	  ans=MIN(ans,p(max[0]-1,b[0][5]-1,max[1]  ,b[1][5]+1)+1);
+	  ans=MIN(ans,p(max[0]  ,b[0][5]+1,max[1]-1,b[1][5]-1)+1);
+	}
+	else ans=MIN(ans,p(max[0],b[0][5],max[1],b[1][5]));
+	printf("%d %d %d\n",ans,j[0],j[1]);
       }
     }//*/
   }

@@ -38,8 +38,8 @@ int main(){
 
     //小さいケース
     for(int i = 0; i < 10; i++){
-        int N = rnd.next(MIN_N, MIN_N + 5);
-        int M = rnd.next(MIN_M, MIN_N + 5);
+        int N = rnd.next(MIN_N, MIN_N + 10);
+        int M = rnd.next(MIN_M, MIN_N + 10);
         vector<int> v = create(N, M);
         output(N, M, v, "50_random_small", i);
     }
@@ -74,5 +74,19 @@ int main(){
         int M = MIN_M;
         vector<int> v = create(N, M);
         output(N, M, v, "60_minimum", i);
+    }
+
+	//奇数が並ぶケース
+    for(int i = 0; i < 10; i++){
+        int N = MAX_N;
+		int odd = 0;
+		while(odd % 2 == 0) odd = rnd.next(MIN_M, MAX_M / 2);
+
+		int M = odd * 2;
+		vector<int> v;
+		for(int j = 0; j < N; j++){
+			v.push_back(odd);
+		}
+        output(N, M, v, "50_odd_number", i);
     }
 }
