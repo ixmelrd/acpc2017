@@ -79,11 +79,13 @@ int main(){
 	//奇数が並ぶケース
     for(int i = 0; i < 10; i++){
         int N = MAX_N;
-		int M = 1;
-		while(M % 2 || M < 2) M = rnd.next(MIN_M, MAX_M);
+		int odd = 0;
+		while(odd % 2 == 0) odd = rnd.next(MIN_M, MAX_M / 2);
+
+		int M = odd * 2;
 		vector<int> v;
 		for(int j = 0; j < N; j++){
-			v.push_back(M / 2);
+			v.push_back(odd);
 		}
         output(N, M, v, "50_odd_number", i);
     }
